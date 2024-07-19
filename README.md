@@ -25,9 +25,11 @@
   Function takes a text input, uses the SentenceTransformer model to encode this text into dense embeddings, and then returns these embeddings.
 #### 7.) Creating Custom Datasets:
   CustomDataset is a class used for creating and managing the dataset that will be used to fine-tune the BERT model by tokenizing text and preparing it for model processing.
-#### 8.) Model Fine-tuning:
+#### 8.) Metrics Calculation
+  The MetricsCalculator class is designed to compute various evaluation metrics for a model, including accuracy, loss, precision, recall, and F1-score.
+#### 9.) Model Fine-tuning:
   The custom_fine_tune function fine-tunes the pre-trained BERT model on custom datasets, using predefined training arguments.
-#### 9.) Creating an Interactive UI:
+#### 10.) Creating an Interactive UI:
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
 
@@ -196,5 +198,34 @@ class CustomDataset(torch.utils.data.Dataset):
             'input_ids': encoding['input_ids'].flatten(),
             'attention_mask': encoding['attention_mask'].flatten(),
             'labels': torch.tensor(label, dtype=torch.long)
+        }
+```
+#### 8.) Metrics Calculation
+The MetricsCalculator class is designed to compute various evaluation metrics for a model, including accuracy, loss, precision, recall, and F1-score. The compute_metrics function takes model predictions and true labels, calculates the specified metrics, and returns them in a structured dictionary format, making it easier to evaluate the performance of the model in various tasks.
+```python
+class MetricsCalculator:
+    def __init__(self):
+        self.metric = load_metric("accuracy")
+        self.loss_fn = torch.nn.CrossEntropyLoss()
+
+    def compute_metrics(self, eval_pred):
+        predictions = eval_pred.predictions
+        labels = eval_pred.label_ids
+
+        # Calculate accuracy
+        accuracy = self.metric.compute(predictions=predictions.argmax(axis=1), references=labels)
+
+        # Calculate loss
+        loss = self.loss_fn(torch.tensor(predictions), torch.tensor(labels)).item()
+
+        # Calculate precision, recall, f1-score
+        precision, recall, f1, _ = precision_recall_fscore_support(labels, predictions.argmax(axis=1), average='weighted')
+
+        return {
+            'eval_accuracy': accuracy['accuracy'],
+            'eval_loss': loss,
+            'eval_precision': precision,
+            'eval_recall': recall,
+            'eval_f1': f1,
         }
 ```
