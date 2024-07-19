@@ -84,3 +84,29 @@ from datasets import load_dataset, load_metric
 from torch.utils.data import DataLoader
 from sklearn.metrics import precision_recall_fscore_support
 ```
+#### 2.) Fetching Stock Data
+Defines a function named get_stock_data(api_key, symbol) which is used to fetch intraday stock data for a given symbol using the Alpha Vantage API.
+### The get_stock_data function:
+  - Constructs a URL to fetch intraday stock data.
+  - Sends an HTTP GET request to the Alpha Vantage API.
+  - Parses the JSON response.
+  - Converts the time series data into a Pandas DataFrame.
+  - Renames the columns for better readability.
+  - Converts the index to datetime objects.
+  - Returns the final DataFrame for further use.
+```python
+def get_stock_data(api_key, symbol):
+    url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
+    response = requests.get(url)
+    data = response.json()
+    df = pd.DataFrame(data['Time Series (1min)']).T
+    df = df.rename(columns={
+        '1. open': 'open',
+        '2. high': 'high',
+        '3. low': 'low',
+        '4. close': 'close',
+        '5. volume': 'volume'
+    })
+    df.index = pd.to_datetime(df.index)
+    return df
+```
