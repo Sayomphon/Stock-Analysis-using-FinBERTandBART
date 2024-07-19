@@ -31,7 +31,7 @@ This line defines a function get_stock_data that takes two parameters:
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
 ```
 This line constructs the URL needed to fetch intraday data from the Alpha Vantage API. The URL includes:
-  - function=TIME_SERIES_INTRADAY: Specifies the type of data to fetch (intraday stock data).
+    - function=TIME_SERIES_INTRADAY: Specifies the type of data to fetch (intraday stock data).
   - symbol={symbol}: The stock symbol.
   - interval=1min: The interval between data points (1 minute in this case).
   - apikey={api_key}: The API key for access.
