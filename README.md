@@ -229,3 +229,59 @@ class MetricsCalculator:
             'eval_f1': f1,
         }
 ```
+#### 9.) Model Fine-tuning
+This function, custom_fine_tune , fine-tunes a pre-trained transformer model using a training dataset, a validation dataset, and a specified set of training arguments. It then evaluates the trained model and saves both the model and tokenizer to an output directoryใ
+```python
+# Function to fine-tune a pre-trained model
+def custom_fine_tune(transformer_model, tokenizer, train_dataset, val_dataset, output_dir, epochs=3, batch_size=16, learning_rate=2e-5):
+    training_args = TrainingArguments(
+        output_dir=output_dir,  # Specify the output directory for saving results
+        per_device_train_batch_size=batch_size,
+        num_train_epochs=epochs,
+        per_device_eval_batch_size=batch_size,
+        eval_strategy='epoch',  # Updated according to warning
+        save_strategy='epoch',
+        logging_dir='./logs',
+        fp16=True,
+        gradient_accumulation_steps=2,
+        learning_rate=learning_rate,
+        load_best_model_at_end=True,
+        metric_for_best_model='accuracy',
+        logging_steps=100,
+        weight_decay=0.01,
+    )
+
+    num_labels = 2
+    model = AutoModelForSequenceClassification.from_pretrained(
+        'bert-base-uncased',
+        num_labels=num_labels,
+        hidden_dropout_prob=0.4,
+        attention_probs_dropout_prob=0.4
+    )
+
+    # Instantiate your MetricsCalculator
+    metrics_calculator = MetricsCalculator()
+
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=train_dataset,
+        eval_dataset=val_dataset,
+        tokenizer=tokenizer,
+        data_collator=default_data_collator,
+        compute_metrics=metrics_calculator.compute_metrics,
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=3)],
+    )
+
+    # Start training
+    trainer.train()
+
+    # Evaluate the model
+    eval_results = trainer.evaluate()
+
+    # Save the model and tokenizer
+    model.save_pretrained(output_dir)
+    tokenizer.save_pretrained(output_dir)
+
+    return eval_results
+```
