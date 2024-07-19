@@ -21,7 +21,7 @@
   clean_text function cleans the text by removing URLs, emails, and special characters.
 #### 5.) Loading and Using Machine Learning Models:
   The code loads various Transformer models, such as finbert for financial sentiment analysis, bart for summarizing news, and sentence_transformer for generating text embeddings.
-#### 6.) generate dense vector representations:
+#### 6.) Generate dense vector representations:
   Function takes a text input, uses the SentenceTransformer model to encode this text into dense embeddings, and then returns these embeddings.
 #### 7.) Creating Custom Datasets:
   CustomDataset is a class used for creating and managing the dataset that will be used to fine-tune the BERT model by tokenizing text and preparing it for model processing.
