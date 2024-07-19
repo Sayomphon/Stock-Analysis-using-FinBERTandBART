@@ -18,7 +18,7 @@
 #### 3.) Fetching Financial News:
   The get_latest_news function leverages the News API to fetch the latest financial news linked to the given stock symbol provided by the user.
 #### 4.) Text Processing and Cleaning:
-  clean_text function cleans the text by removing URLs, emails, and special characters.
+  Clean_text function cleans the text by removing URLs, emails, and special characters.
 #### 5.) Loading and Using Machine Learning Models:
   The code loads various Transformer models, such as finbert for financial sentiment analysis, bart for summarizing news, and sentence_transformer for generating text embeddings.
 #### 6.) Generate dense vector representations:
@@ -32,8 +32,10 @@
 #### 10.) Generate advice
   The function generate_advice is designed to generate a summarized version of a given text prompt using a pre-trained BART model. This function tokenizes the input prompt, generates a summary, and then decodes the summary back into text.
 #### 11.) Summarize Text
- The function is designed to generate a summarized version of a given input text using a pre-trained BART model. This function takes a text input, tokenizes it, generates a summary, and then decodes the summary back into human-readable text.
-#### 16.) Creating an Interactive UI:
+  The function is designed to generate a summarized version of a given input text using a pre-trained BART model. This function takes a text input, tokenizes it, generates a summary, and then decodes the summary back into human-readable text.
+#### 12.) Stock Analysis Functions before Fine-tuning
+  Function aims to analyze stock information and provide investment advice based on stock performance, news sentiment, and recent market trends. It utilizes APIs for stock data and news fetching,
+#### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
 
@@ -306,4 +308,46 @@ def summarize_text(text):
     inputs = bart_tokenizer.encode("summarize: " + text, return_tensors="pt", max_length=512, truncation=True)
     summary_ids = bart_model.generate(inputs, max_length=300, min_length=100, length_penalty=2.0, num_beams=4, early_stopping=True)
     return bart_tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+```
+#### 12.) Stock Analysis Functions before Fine-tuning
+The analyze_stock_before_finetune function is designed to analyze a given stock symbol by fetching its latest price, gathering and processing recent news articles, and generating detailed investment advice. The function utilizes multiple components including sentiment analysis and text summarization, and returns a set of comprehensive results that include the latest price, generated advice, processed news summaries, and the complete stock data.
+```python
+# Function for stock analysis before fine-tuning
+def analyze_stock_before_finetune(alpha_vantage_api_key, news_api_key, symbol):
+    stock_data = get_stock_data(alpha_vantage_api_key, symbol)
+    latest_price = stock_data['close'][0]
+
+    # Fetch latest news
+    news_data = get_latest_news(symbol, news_api_key)
+    news_summary_cleaned = []
+
+    if news_data and 'articles' in news_data:
+        for article in news_data['articles'][:5]:
+            description = clean_text(article['description'])
+            inputs = finbert_tokenizer(description, return_tensors='pt', padding=True, truncation=True, max_length=512)
+            outputs = finbert_model(**inputs)
+            sentiment = torch.argmax(outputs.logits, dim=1).item()
+            sentiment_label = "Positive" if sentiment == 1 else "Negative" if sentiment == 0 else "Neutral"
+
+            # Summarize news using finbert model
+            summary = summarize_text(description)
+
+            # Get embeddings of the cleaned text
+            embeddings = get_embeddings(description)
+
+            news_summary_cleaned.append((article['title'], sentiment_label, summary, embeddings))
+
+    # Investment advice with detailed prompt
+    advice_prompt = (
+        f"Current market trends show a bullish movement in the tech sector. {symbol} has been gaining momentum. "
+        f"News articles suggest significant investor interest. Given the current price of {symbol}, generate detailed investment advice "
+        f"considering market trends, stock performance, and financial news. "
+        f"Provide a thorough analysis including potential risks, market conditions, and long-term investment potential. "
+        f"Discuss the stock's historical performance, recent news impact, and any upcoming events that may influence its price. "
+        f"Also, offer a strategic plan for both short-term and long-term investors."
+    )
+
+    advice = generate_advice(advice_prompt)
+
+    return latest_price, advice, news_summary_cleaned, stock_data
 ```
