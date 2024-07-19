@@ -51,29 +51,35 @@ Creates interactive widgets for Jupyter Notebooks.
 from IPython.display import display, HTML
 ```
 Displays objects and HTML content in Jupyter Notebooks.
-7. Regular Expressions
+### Regular Expressions
+```python
 import re
-
+```
 Handles regular expressions for searching and managing text based on patterns.
-8. Data Visualization
+### Data Visualization
+```python
 import plotly.graph_objects as go
-
+```
 Creates interactive graphs, such as candlestick charts for stock data visualization.
-9. Sentence Transformers
+### Sentence Transformers
+```python
 from sentence_transformers import SentenceTransformer
-
+```
 Transforms sentences into vectors for mathematical analysis and machine learning.
-10. Ready-to-Use Datasets
+### Ready-to-Use Datasets
+```python
 from datasets import load_dataset, load_metric
-
+```
 Loads datasets and evaluates NLP models with metrics.
-load_dataset: Loads various datasets for training and testing.
-load_metric: Loads metrics for model evaluation.
-11. Data Handling in PyTorch
+  - load_dataset: Loads various datasets for training and testing.
+  - load_metric: Loads metrics for model evaluation.
+### Data Handling in PyTorch
+```python
 from torch.utils.data import DataLoader
-
+```
 Manages datasets for model training in PyTorch.
-12. Model Evaluation Metrics
+### Model Evaluation Metrics
+```python
 from sklearn.metrics import precision_recall_fscore_support
-
+```
 Evaluates and measures the performance of machine learning models, calculating precision, recall, and F1-score.
