@@ -12,7 +12,7 @@ The function summarize_text is defined to take a single parameter text, which is
 def summarize_text(text):
 ```
 ### Tokenizing the Input
-This line encodes the input text into tokens with specific parameters for the BART model and prepares it for summarization.
+This line encodes the input prompt into tokens with specific parameters for the BART model and prepares it for summarization.
 ```python
     inputs = bart_tokenizer.encode("summarize: " + text, return_tensors="pt", max_length=512, truncation=True)
 ```
