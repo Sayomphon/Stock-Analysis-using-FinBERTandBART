@@ -66,11 +66,11 @@ This line checks if the key 'Time Series (1min)' is present in the parsed JSON d
 If the time series data is available:
     - The function converts the relevant part of the JSON data (the time series data) into a Pandas DataFrame.
     - The columns are renamed to more user-friendly names:
-        - '1. open' -> 'open'
-        - '2. high' -> 'high'
-        - '3. low' -> 'low'
-        - '4. close' -> 'close'
-        - '5. volume' -> 'volume'
+         '1. open' -> 'open'
+         '2. high' -> 'high'
+         '3. low' -> 'low'
+         '4. close' -> 'close'
+         '5. volume' -> 'volume'
     - The DataFrame index (dates/times) is converted into datetime objects for easier manipulation and analysis.
     - The function returns the processed DataFrame.
 ### Error Handling
