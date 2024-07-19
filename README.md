@@ -142,6 +142,11 @@ def clean_text(text):
 ```
 #### 5.) Loading and Using Machine Learning Models
 This section of code is intended to load several pretrained models and tokenizers from various sources, which could be used for natural language processing tasks such as sentiment analysis, summarization, and sentence embeddings.
+this code is preparing several tools for different natural language processing tasks:
+  - Sentiment Analysis with FinBERT.
+  - Text Summarization with BART.
+  - Sentence Embeddings with SentenceTransformer.
+Each of these models and tokenizers is initialized using pretrained weights from their respective sources. The from_pretrained method facilitates this process, ensuring that the models are ready for immediate use.
 ```python
 # Load models
 finbert_tokenizer = AutoTokenizer.from_pretrained('yiyanghkust/finbert-tone')
