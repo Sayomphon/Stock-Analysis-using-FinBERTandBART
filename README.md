@@ -94,6 +94,7 @@ Defines a function named get_stock_data(api_key, symbol) that fetches intraday s
   - If available, converts the data into a Pandas DataFrame, renames the columns, converts the index to datetime objects, and returns the DataFrame.
   - If not available, raises an error with a descriptive message.
 ```python
+# Fubction to fetch intraday stock data
 def get_stock_data(api_key, symbol):
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
     response = requests.get(url)
@@ -114,4 +115,17 @@ def get_stock_data(api_key, symbol):
         raise ValueError(f"Data not available or API request failed. Response: {data}")
 ```
 #### 3.) Fetching Financial News
-
+Code is a function designed to fetch the latest financial news for a specified stock symbol using the News API.
+#### Function Workflow
+  - Input: The function takes symbol and api_key as input parameters.
+  - URL Construction: It constructs a URL using the provided stock symbol and api_key.
+  - API Request: The function makes an HTTP GET request to the constructed URL to fetch the news data.
+  - Response Handling: The server's response is converted into JSON format.
+  - Output: The function returns the JSON response containing the news articles.
+```python
+# Function to fetch financial news
+def get_latest_news(symbol, api_key):
+    news_url = f'https://newsapi.org/v2/everything?q={symbol}&apiKey={api_key}'
+    response = requests.get(news_url)
+    return response.json()
+```
