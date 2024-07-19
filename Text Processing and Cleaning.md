@@ -1,4 +1,13 @@
 ## This function clean_text is used to clean up a given text
+```python
+# Clean text function
+def clean_text(text):
+    text = re.sub(r'http\S+', '', text)  # Remove URLs
+    text = re.sub(r'\S+@\S+', '', text)  # Remove emails
+    text = re.sub(r'[^A-Za-z0-9\s]+', '', text)  # Remove special characters
+    text = text.strip()
+    return text
+```
 ### Defining the function
 ```python
 def clean_text(text):
