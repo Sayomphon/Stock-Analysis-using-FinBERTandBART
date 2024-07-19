@@ -35,6 +35,8 @@
   The function is designed to generate a summarized version of a given input text using a pre-trained BART model. This function takes a text input, tokenizes it, generates a summary, and then decodes the summary back into human-readable text.
 #### 12.) Stock Analysis Functions before Fine-tuning
   Function aims to analyze stock information and provide investment advice based on stock performance, news sentiment, and recent market trends. It utilizes APIs for stock data and news fetching,
+#### 13. Create UI before fine-tuning
+  This code snippet creates a simple user interface (UI) using the ipywidgets library in Python. The UI allows the user to input API keys for Alpha Vantage and a news service, along with a stock symbol. Upon clicking a button.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -350,4 +352,44 @@ def analyze_stock_before_finetune(alpha_vantage_api_key, news_api_key, symbol):
     advice = generate_advice(advice_prompt)
 
     return latest_price, advice, news_summary_cleaned, stock_data
+```
+#### 13. Create UI before fine-tuning
+The code creates an interactive UI allowing users to input API keys and a stock symbol. When the "Analyze Stock" button is clicked, the function on_button_click is triggered, which fetches stock data and news, processes this information, and displays the latest stock price, investment advice, and summarized news articles. Additionally, it visualizes the stock data using a candlestick chart, all within the Jupyter Notebook interface using ipywidgets and Plotly for visualization.
+```python
+# Create UI before fine-tuning
+alpha_vantage_api_key_widget = widgets.Text(value='', placeholder='Enter your Alpha Vantage API Key', description='Alpha Vantage API Key:')
+news_api_key_widget = widgets.Text(value='', placeholder='Enter your News API Key', description='News API Key:')
+symbol_widget = widgets.Text(value='', placeholder='Enter stock symbol (e.g., AAPL)', description='Stock Symbol:')
+output = widgets.Output()
+
+def on_button_click(b):
+    with output:
+        output.clear_output()
+        alpha_vantage_api_key = alpha_vantage_api_key_widget.value
+        news_api_key = news_api_key_widget.value
+        symbol = symbol_widget.value
+        if alpha_vantage_api_key and news_api_key and symbol:
+            latest_price, advice, news_summary_cleaned, stock_data = analyze_stock_before_finetune(alpha_vantage_api_key, news_api_key, symbol)
+            display(HTML(f'<h3>Current Price of {symbol}: {latest_price}</h3>'))
+            display(HTML(f'<h4>Investment Advice:</h4><p>{advice}</p>'))
+            display(HTML('<h4>Latest Financial News:</h4>'))
+            for title, sentiment, summary, embeddings in news_summary_cleaned:
+                #display(HTML(f"<b>{title}</b> (Sentiment: {sentiment})<br>{summary}<br>Embeddings: {embeddings}<br><br>"))
+                display(HTML(f"<b>{title}</b> (Sentiment: {sentiment})<br>{summary}<br><br>"))
+
+            # Visualize stock data
+            fig = go.Figure(data=[go.Candlestick(
+                x=stock_data.index,
+                open=stock_data['open'],
+                high=stock_data['high'],
+                low=stock_data['low'],
+                close=stock_data['close']
+            )])
+            fig.update_layout(title=f'Stock Price Data for {symbol}', yaxis_title='Price (USD)', xaxis_title='Time')
+            fig.show()
+        else:
+            print("Please enter the Alpha Vantage API key, News API key and stock symbol.")
+
+button = widgets.Button(description="Analyze Stock")
+button.on_click(on_button_click)
 ```
