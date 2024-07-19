@@ -21,11 +21,13 @@
   clean_text function cleans the text by removing URLs, emails, and special characters.
 #### 5.) Loading and Using Machine Learning Models:
   The code loads various Transformer models, such as finbert for financial sentiment analysis, bart for summarizing news, and sentence_transformer for generating text embeddings.
-#### 6.) Creating Custom Datasets:
+#### 6.) generate dense vector representations:
+  Function takes a text input, uses the SentenceTransformer model to encode this text into dense embeddings, and then returns these embeddings.
+#### 7.) Creating Custom Datasets:
   CustomDataset is a class used for creating and managing the dataset that will be used to fine-tune the BERT model by tokenizing text and preparing it for model processing.
-#### 7.) Model Fine-tuning:
+#### 8.) Model Fine-tuning:
   The custom_fine_tune function fine-tunes the pre-trained BERT model on custom datasets, using predefined training arguments.
-#### 8.) Creating an Interactive UI:
+#### 9.) Creating an Interactive UI:
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
 
@@ -154,4 +156,12 @@ finbert_model = AutoModelForSequenceClassification.from_pretrained('yiyanghkust/
 bart_tokenizer = BartTokenizer.from_pretrained('facebook/bart-large-cnn')
 bart_model = BartForConditionalGeneration.from_pretrained('facebook/bart-large-cnn')
 sentence_encoder = SentenceTransformer('all-mpnet-base-v2')
+```
+#### 6.) generate dense vector representations
+The get_embeddings function takes a text input, uses the SentenceTransformer model to encode this text into dense embeddings, and then returns these embeddings. These embeddings can be used in various downstream tasks, such as semantic similarity computation, clustering, or as input features for machine learning models.
+```python
+# Function embeeding
+def get_embeddings(text):
+    embeddings = sentence_encoder.encode(text)
+    return embeddings
 ```
