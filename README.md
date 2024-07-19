@@ -29,7 +29,9 @@
   The MetricsCalculator class is designed to compute various evaluation metrics for a model, including accuracy, loss, precision, recall, and F1-score.
 #### 9.) Model Fine-tuning:
   The custom_fine_tune function fine-tunes the pre-trained BERT model on custom datasets, using predefined training arguments.
-#### 10.) Creating an Interactive UI:
+#### 10.) Generate advice
+  The function generate_advice is designed to generate a summarized version of a given text prompt using a pre-trained BART model. This function tokenizes the input prompt, generates a summary, and then decodes the summary back into text.
+#### 16.) Creating an Interactive UI:
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
 
@@ -98,7 +100,7 @@ Defines a function named get_stock_data(api_key, symbol) that fetches intraday s
   - If available, converts the data into a Pandas DataFrame, renames the columns, converts the index to datetime objects, and returns the DataFrame.
   - If not available, raises an error with a descriptive message.
 ```python
-# Fubction to fetch intraday stock data
+# Function to fetch intraday stock data
 def get_stock_data(api_key, symbol):
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
     response = requests.get(url)
@@ -284,4 +286,13 @@ def custom_fine_tune(transformer_model, tokenizer, train_dataset, val_dataset, o
     tokenizer.save_pretrained(output_dir)
 
     return eval_results
+```
+#### Generate advice
+The generate_advice function takes an input prompt, encodes it into tokens using the BART tokenizer, and passes these tokens to a pre-trained BART model to generate a summary. The generated summary tokens are then decoded back into a textual summary, which is returned as the function's output. This process effectively leverages the BART model for tasks such as summarization or generating advice based on the input text.
+```python
+# Function to generate advice using BART
+def generate_advice(prompt):
+    inputs = bart_tokenizer.encode("summarize: " + prompt, return_tensors="pt", max_length=512, truncation=True)
+    summary_ids = bart_model.generate(inputs, max_length=512, min_length=200, length_penalty=2.0, num_beams=4, early_stopping=True)
+    return bart_tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 ```
