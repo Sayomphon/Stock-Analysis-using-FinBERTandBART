@@ -31,6 +31,8 @@
   The custom_fine_tune function fine-tunes the pre-trained BERT model on custom datasets, using predefined training arguments.
 #### 10.) Generate advice
   The function generate_advice is designed to generate a summarized version of a given text prompt using a pre-trained BART model. This function tokenizes the input prompt, generates a summary, and then decodes the summary back into text.
+#### 11.) Summarize Text
+ The function is designed to generate a summarized version of a given input text using a pre-trained BART model. This function takes a text input, tokenizes it, generates a summary, and then decodes the summary back into human-readable text.
 #### 16.) Creating an Interactive UI:
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -294,5 +296,14 @@ The generate_advice function takes an input prompt, encodes it into tokens using
 def generate_advice(prompt):
     inputs = bart_tokenizer.encode("summarize: " + prompt, return_tensors="pt", max_length=512, truncation=True)
     summary_ids = bart_model.generate(inputs, max_length=512, min_length=200, length_penalty=2.0, num_beams=4, early_stopping=True)
+    return bart_tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+```
+#### 11.) Summarize Text
+The summarize_text function takes an input text, encodes it into tokens using the BART tokenizer, and passes these tokens to a pre-trained BART model to generate a summary. The generated summary tokens are then decoded back into a textual summary, which is returned as the function's output. This function effectively leverages the BART model's capabilities for text summarization tasks, making it useful for condensing lengthy texts into more concise summaries.
+```python
+# Function to summarize text using BART
+def summarize_text(text):
+    inputs = bart_tokenizer.encode("summarize: " + text, return_tensors="pt", max_length=512, truncation=True)
+    summary_ids = bart_model.generate(inputs, max_length=300, min_length=100, length_penalty=2.0, num_beams=4, early_stopping=True)
     return bart_tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 ```
