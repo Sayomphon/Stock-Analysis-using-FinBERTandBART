@@ -3,14 +3,14 @@
 ## Code Summary
 ### This project is designed to fetch stock data and financial news, predict trends, and provide investment advice using Machine Learning models through Transformers. It uses various libraries to process the data, fine-tune models, and create an interactive UI for users to input their API keys and stock symbols.
 
-### Installation and setup
+## Installation and setup
 #### 1.) Install necessary libraries
   !pip install requests pandas transformers ipywidgets torch plotly sentence-transformers datasets accelerate bitsandbytes
 #### 2.) Enable IPyWidgets for Google Colab
   from google.colab import output
   output.enable_custom_widget_manager() 
 
-### Main Functionality of the Code
+## Main Functionality of the Code
 #### 1.) Installing and Enabling Libraries:
   The code installs and enables essential libraries such as requests, pandas, transformers, torch, plotly, ipywidgets, and others for data fetching, processing, and UI rendering.
 #### 2.) Fetching Stock Data:
@@ -29,7 +29,7 @@
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
 
-### Use Case
+## Use Case
 #### 1.) Investors:
   - Usage: Investors can use this code to fetch stock data and news related to a specific stock, such as AAPL (Apple Inc.), and receive a market trend prediction and investment advice.
   - Outcome: The investor will receive information about the latest stock price, summarized key news articles, and the sentiment analysis of those news articles (positive, negative, neutral), along with investment advice.
@@ -41,7 +41,7 @@
   - Customization: The code can be customized or extended to include additional functionalities, such as aggregating data from multiple sources or using custom Machine Learning models.
 ##### This code serves as a fairly comprehensive system for fetching and analyzing financial data, which can be easily extended for use in larger applications.
 
-### Additional
+## Additional
 #### License
   This project is licensed under the MIT License - see the LICENSE.md file for details.
 #### Acknowledgments
@@ -51,7 +51,7 @@
   For any questions or feedback, please open an issue in this repository.
   You can copy and paste the above content into a `README.md` file for your GitHub repository. Customize it further as needed to fit your specific needs and details about your project.
 
-### 1. Installation and Setup
+## 1. Installation and Setup
 Before running the project, you need to install the necessary libraries and enable ipywidgets if you're using Google Colab.
 #### 1.) Installing Necessary Libraries
 To install all the required libraries, run the following command
@@ -66,7 +66,7 @@ If you're using Google Colab, enable ipywidgets by running the following code
 from google.colab import output
 output.enable_custom_widget_manager()
 ```
-### 2. Main Functionality of the Code
+## 2. Main Functionality of the Code
 #### 1.) Installing and Enabling Libraries
 The following libraries and modules are imported for the project
 This project imports multiple libraries required for building an application related to applied NLP, stock analysis, and creating interactive interfaces. Detailed steps and explanations are provided in the related sections to help understand the usage and functionality of each library.
@@ -85,28 +85,33 @@ from torch.utils.data import DataLoader
 from sklearn.metrics import precision_recall_fscore_support
 ```
 #### 2.) Fetching Stock Data
-Defines a function named get_stock_data(api_key, symbol) which is used to fetch intraday stock data for a given symbol using the Alpha Vantage API.
+Defines a function named get_stock_data(api_key, symbol) that fetches intraday stock data for a given symbol using the Alpha Vantage API. This version of the function includes error handling to ensure that the data is available before proceeding with further processing.
 #### The get_stock_data function:
   - Constructs a URL to fetch intraday stock data.
   - Sends an HTTP GET request to the Alpha Vantage API.
   - Parses the JSON response.
-  - Converts the time series data into a Pandas DataFrame.
-  - Renames the columns for better readability.
-  - Converts the index to datetime objects.
-  - Returns the final DataFrame for further use.
+  - Checks if the time series data is available.
+  - If available, converts the data into a Pandas DataFrame, renames the columns, converts the index to datetime objects, and returns the DataFrame.
+  - If not available, raises an error with a descriptive message.
 ```python
 def get_stock_data(api_key, symbol):
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
     response = requests.get(url)
     data = response.json()
-    df = pd.DataFrame(data['Time Series (1min)']).T
-    df = df.rename(columns={
-        '1. open': 'open',
-        '2. high': 'high',
-        '3. low': 'low',
-        '4. close': 'close',
-        '5. volume': 'volume'
-    })
-    df.index = pd.to_datetime(df.index)
-    return df
+ 
+    if 'Time Series (1min)' in data:
+        df = pd.DataFrame(data['Time Series (1min)']).T
+        df = df.rename(columns={
+            '1. open': 'open',
+            '2. high': 'high',
+            '3. low': 'low',
+            '4. close': 'close',
+            '5. volume': 'volume'
+        })
+        df.index = pd.to_datetime(df.index)
+        return df
+    else:
+        raise ValueError(f"Data not available or API request failed. Response: {data}")
 ```
+#### 3.) Fetching Financial News
+
