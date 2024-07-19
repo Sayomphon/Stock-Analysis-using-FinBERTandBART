@@ -34,3 +34,13 @@ A button is available for users to click to perform stock analysis and display t
   - Usage: Developers can use this code as a foundation to build more complex and comprehensive systems for stock analysis and investment advice.
   - Customization: The code can be customized or extended to include additional functionalities, such as aggregating data from multiple sources or using custom Machine Learning models.
 ##### This code serves as a fairly comprehensive system for fetching and analyzing financial data, which can be easily extended for use in larger applications.
+
+#### License
+  This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+#### Acknowledgments
+  - Special thanks to Hugging Face for providing the Transformers library.
+  - Alpha Vantage and News API for offering financial data and news services.
+#### Contact
+  For any questions or feedback, please open an issue in this repository.
+  You can copy and paste the above content into a `README.md` file for your GitHub repository. Customize it further as needed to fit your specific needs and details about your project.
