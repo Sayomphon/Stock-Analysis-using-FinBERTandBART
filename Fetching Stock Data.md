@@ -31,7 +31,7 @@ This line defines a function get_stock_data that takes two parameters:
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
 ```
 This line constructs the URL needed to fetch intraday data from the Alpha Vantage API. The URL includes:
-    - function=TIME_SERIES_INTRADAY: Specifies the type of data to fetch (intraday stock data).
+  - function=TIME_SERIES_INTRADAY: Specifies the type of data to fetch (intraday stock data).
   - symbol={symbol}: The stock symbol.
   - interval=1min: The interval between data points (1 minute in this case).
   - apikey={api_key}: The API key for access.
@@ -64,20 +64,20 @@ This line checks if the key 'Time Series (1min)' is present in the parsed JSON d
         return df
 ```
 If the time series data is available:
-    - The function converts the relevant part of the JSON data (the time series data) into a Pandas DataFrame.
-    - The columns are renamed to more user-friendly names:
-         '1. open' -> 'open'
-         '2. high' -> 'high'
-         '3. low' -> 'low'
-         '4. close' -> 'close'
-         '5. volume' -> 'volume'
-    - The DataFrame index (dates/times) is converted into datetime objects for easier manipulation and analysis.
-    - The function returns the processed DataFrame.
+  - The function converts the relevant part of the JSON data (the time series data) into a Pandas DataFrame.
+  - The columns are renamed to more user-friendly names:
+    - '1. open' -> 'open'
+    - '2. high' -> 'high'
+    - '3. low' -> 'low'
+    - '4. close' -> 'close'
+    - '5. volume' -> 'volume'
+  - The DataFrame index (dates/times) is converted into datetime objects for easier manipulation and analysis.
+  - The function returns the processed DataFrame.
 ### Error Handling
 ```python
     else:
         raise ValueError(f"Data not available or API request failed. Response: {data}")
 ```
 If the 'Time Series (1min)' key is not found in the JSON data:
-    - The function raises a ValueError, indicating that the data is not available or the API request failed.
-    - The error message includes the entire API response for debugging purposes.
+  - The function raises a ValueError, indicating that the data is not available or the API request failed.
+  - The error message includes the entire API response for debugging purposes.
