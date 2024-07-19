@@ -3,14 +3,14 @@
 ## Code Summary
 ### This project is designed to fetch stock data and financial news, predict trends, and provide investment advice using Machine Learning models through Transformers. It uses various libraries to process the data, fine-tune models, and create an interactive UI for users to input their API keys and stock symbols.
 
-### 1. Installation and setup
+## Installation and setup
 #### 1.) Install necessary libraries
   !pip install requests pandas transformers ipywidgets torch plotly sentence-transformers datasets accelerate bitsandbytes
 #### 2.) Enable IPyWidgets for Google Colab
   from google.colab import output
   output.enable_custom_widget_manager() 
 
-### 2. Main Functionality of the Code
+## Main Functionality of the Code
 #### 1.) Installing and Enabling Libraries:
   The code installs and enables essential libraries such as requests, pandas, transformers, torch, plotly, ipywidgets, and others for data fetching, processing, and UI rendering.
 #### 2.) Fetching Stock Data:
@@ -29,7 +29,7 @@
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
 
-### 3. Use Case
+## Use Case
 #### 1.) Investors:
   - Usage: Investors can use this code to fetch stock data and news related to a specific stock, such as AAPL (Apple Inc.), and receive a market trend prediction and investment advice.
   - Outcome: The investor will receive information about the latest stock price, summarized key news articles, and the sentiment analysis of those news articles (positive, negative, neutral), along with investment advice.
@@ -41,7 +41,7 @@
   - Customization: The code can be customized or extended to include additional functionalities, such as aggregating data from multiple sources or using custom Machine Learning models.
 ##### This code serves as a fairly comprehensive system for fetching and analyzing financial data, which can be easily extended for use in larger applications.
 
-### 4. Additional
+## Additional
 #### License
   This project is licensed under the MIT License - see the LICENSE.md file for details.
 #### Acknowledgments
