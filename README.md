@@ -129,3 +129,14 @@ def get_latest_news(symbol, api_key):
     response = requests.get(news_url)
     return response.json()
 ```
+#### 4.) Text Processing and Cleaning
+This function clean_text is used to clean up a given text by removing URLs, email addresses, and special characters. Here is a breakdown of what each line in the function does.
+```python
+# Clean text function
+def clean_text(text):
+    text = re.sub(r'http\S+', '', text)  # Remove URLs
+    text = re.sub(r'\S+@\S+', '', text)  # Remove emails
+    text = re.sub(r'[^A-Za-z0-9\s]+', '', text)  # Remove special characters
+    text = text.strip()
+    return text
+```
