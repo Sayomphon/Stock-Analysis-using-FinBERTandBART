@@ -140,3 +140,13 @@ def clean_text(text):
     text = text.strip()
     return text
 ```
+#### 5.) Loading and Using Machine Learning Models
+This section of code is intended to load several pretrained models and tokenizers from various sources, which could be used for natural language processing tasks such as sentiment analysis, summarization, and sentence embeddings.
+```python
+# Load models
+finbert_tokenizer = AutoTokenizer.from_pretrained('yiyanghkust/finbert-tone')
+finbert_model = AutoModelForSequenceClassification.from_pretrained('yiyanghkust/finbert-tone')
+bart_tokenizer = BartTokenizer.from_pretrained('facebook/bart-large-cnn')
+bart_model = BartForConditionalGeneration.from_pretrained('facebook/bart-large-cnn')
+sentence_encoder = SentenceTransformer('all-mpnet-base-v2')
+```
