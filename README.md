@@ -54,13 +54,13 @@
 ## 1. Installation and Setup
 Before running the project, you need to install the necessary libraries and enable ipywidgets if you're using Google Colab.
 ### 1.) Installing Necessary Libraries
-To install all the required libraries, run the following command:
+To install all the required libraries, run the following command
 ```python
 # This command installs all the essential Python libraries needed for the project.
 !pip install requests pandas transformers ipywidgets torch plotly sentence-transformers datasets accelerate bitsandbytes
 ```
 ### 2.) Enabling ipywidgets for Google Colab
-If you're using Google Colab, enable ipywidgets by running the following code:
+If you're using Google Colab, enable ipywidgets by running the following code
 ```python
 # This code snippet enables the custom widget manager for ipywidgets within Google Colab, allowing the creation and display of interactive widgets in the notebook.
 from google.colab import output
@@ -68,7 +68,8 @@ output.enable_custom_widget_manager()
 ```
 ## 2. Main Functionality of the Code
 ### 1.) Installing and Enabling Libraries
-The following libraries and modules are imported for the project:
+The following libraries and modules are imported for the project
+This project imports multiple libraries required for building an application related to applied NLP, stock analysis, and creating interactive interfaces. Detailed steps and explanations are provided in the related sections to help understand the usage and functionality of each library.
 ```python
 import requests
 import pandas as pd
