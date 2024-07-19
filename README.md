@@ -1,7 +1,7 @@
 # Stock-Analysis-using-FinBERTandBART
 
 ## Code Summary
-This code is designed to create a system that can fetch stock data and financial news, predict trends, and provide investment advice using Machine Learning models through Transformers.
+This project is designed to fetch stock data and financial news, predict trends, and provide investment advice using Machine Learning models through Transformers. It uses various libraries to process the data, fine-tune models, and create an interactive UI for users to input their API keys and stock symbols.
 
 ### Main Functionality of the Code
 
