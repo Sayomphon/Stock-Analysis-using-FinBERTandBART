@@ -37,6 +37,8 @@
   Function aims to analyze stock information and provide investment advice based on stock performance, news sentiment, and recent market trends. It utilizes APIs for stock data and news fetching,
 #### 13.) Create UI before fine-tuning
   This code snippet creates a simple user interface (UI) using the ipywidgets library in Python. The UI allows the user to input API keys for Alpha Vantage and a news service, along with a stock symbol. Upon clicking a button.
+#### 14.) Display UI
+  The function with these widgets as arguments, it renders these UI elements on the screen in the order they are listed. Users can interact with these input fields and the button, and the output area will be used to show the results after the user triggers the analysis by clicking the button.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -393,3 +395,12 @@ def on_button_click(b):
 button = widgets.Button(description="Analyze Stock")
 button.on_click(on_button_click)
 ```
+#### 14.) Display UI
+The line of code utilizes the
+display()
+function to render a user interface where users can enter their Alpha Vantage API key, News API key, and stock symbol. Additionally, it includes a button to initiate the stock analysis and an output space to display the results. This setup facilitates a seamless interaction for users to analyze stock data and view the relevant information in an organized manner.
+```python
+# Display UI
+display(alpha_vantage_api_key_widget, news_api_key_widget, symbol_widget, button, output)
+```
+#### Example UI use case
