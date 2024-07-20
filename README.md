@@ -11,19 +11,19 @@
   output.enable_custom_widget_manager() 
 
 ## Main Functionality of the Code
-#### 1.) Installing and Enabling Libraries:
+#### 1.) Installing and Enabling Libraries
   The code installs and enables essential libraries such as requests, pandas, transformers, torch, plotly, ipywidgets, and others for data fetching, processing, and UI rendering.
 #### 2.) Fetching Stock Data:
   The get_stock_data function fetches minute-level stock data from the Alpha Vantage API and converts the data into a manageable DataFrame format.
-#### 3.) Fetching Financial News:
+#### 3.) Fetching Financial News
   The get_latest_news function leverages the News API to fetch the latest financial news linked to the given stock symbol provided by the user.
 #### 4.) Text Processing and Cleaning:
   Clean_text function cleans the text by removing URLs, emails, and special characters.
-#### 5.) Loading and Using Machine Learning Models:
+#### 5.) Loading and Using Machine Learning Models
   The code loads various Transformer models, such as finbert for financial sentiment analysis, bart for summarizing news, and sentence_transformer for generating text embeddings.
-#### 6.) Generate dense vector representations:
+#### 6.) Generate dense vector representations
   Function takes a text input, uses the SentenceTransformer model to encode this text into dense embeddings, and then returns these embeddings.
-#### 7.) Creating Custom Datasets:
+#### 7.) Creating Custom Datasets
   CustomDataset is a class used for creating and managing the dataset that will be used to fine-tune the BERT model by tokenizing text and preparing it for model processing.
 #### 8.) Metrics Calculation
   The MetricsCalculator class is designed to compute various evaluation metrics for a model, including accuracy, loss, precision, recall, and F1-score.
@@ -35,7 +35,7 @@
   The function is designed to generate a summarized version of a given input text using a pre-trained BART model. This function takes a text input, tokenizes it, generates a summary, and then decodes the summary back into human-readable text.
 #### 12.) Stock Analysis Functions before Fine-tuning
   Function aims to analyze stock information and provide investment advice based on stock performance, news sentiment, and recent market trends. It utilizes APIs for stock data and news fetching,
-#### 13. Create UI before fine-tuning
+#### 13.) Create UI before fine-tuning
   This code snippet creates a simple user interface (UI) using the ipywidgets library in Python. The UI allows the user to input API keys for Alpha Vantage and a news service, along with a stock symbol. Upon clicking a button.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
@@ -238,7 +238,7 @@ class MetricsCalculator:
         }
 ```
 #### 9.) Model Fine-tuning
-This function, custom_fine_tune , fine-tunes a pre-trained transformer model using a training dataset, a validation dataset, and a specified set of training arguments. It then evaluates the trained model and saves both the model and tokenizer to an output directoryใ
+This function, custom_fine_tune , fine-tunes a pre-trained transformer model using a training dataset, a validation dataset, and a specified set of training arguments. It then evaluates the trained model and saves both the model and tokenizer to an output directory.
 ```python
 # Function to fine-tune a pre-trained model
 def custom_fine_tune(transformer_model, tokenizer, train_dataset, val_dataset, output_dir, epochs=3, batch_size=16, learning_rate=2e-5):
@@ -353,7 +353,7 @@ def analyze_stock_before_finetune(alpha_vantage_api_key, news_api_key, symbol):
 
     return latest_price, advice, news_summary_cleaned, stock_data
 ```
-#### 13. Create UI before fine-tuning
+#### 13.) Create UI before fine-tuning
 The code creates an interactive UI allowing users to input API keys and a stock symbol. When the "Analyze Stock" button is clicked, the function on_button_click is triggered, which fetches stock data and news, processes this information, and displays the latest stock price, investment advice, and summarized news articles. Additionally, it visualizes the stock data using a candlestick chart, all within the Jupyter Notebook interface using ipywidgets and Plotly for visualization.
 ```python
 # Create UI before fine-tuning
