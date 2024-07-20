@@ -63,8 +63,8 @@
   This code snippet saves both the fine-tuned model and its associated tokenizer to the directory ./saved_model. The fine_tuned_model.save_pretrained('./saved_model') method saves the model weights and configuration to the specified directory, making it possible to reload and use the model at a later time.
 #### 26.) Function for stock analysis after fine-tuning
   This code defines a function analyze_stock_after_finetune that performs stock analysis using a fine-tuned model for sentiment analysis of news articles. The function takes three parameters: alpha_vantage_api_key, news_api_key, and symbol.
-
-
+#### 27.) Create UI after fine-tuning
+  This code sets up a user interface to perform stock analysis using input widgets for API keys and stock symbols. It initializes text input fields for the Alpha Vantage API key, the News API key, and the stock symbol, along with an output area to display results.
 
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
@@ -581,4 +581,49 @@ def analyze_stock_after_finetune(alpha_vantage_api_key, news_api_key, symbol):
 
     advice = generate_advice(advice_prompt)
     return latest_price, advice, news_summary_cleaned
+```
+#### 27.) Create UI after fine-tuning
+This code sets up a user interface to perform stock analysis using input widgets for API keys and stock symbols. It initializes text input fields for the Alpha Vantage API key, the News API key, and the stock symbol, along with an output area to display results. A function on_button_click is defined to handle button clicks, which clears previous output, retrieves user inputs, validates them, and performs stock analysis using the analyze_stock_after_finetune function. The results include the latest stock price, generated investment advice, and summarized news articles with sentiment analysis, displayed in the output area. Additionally, a candlestick chart visualizing the stock price data is generated and shown. If inputs are incomplete or an error occurs, appropriate messages are displayed. Finally, a button is created and configured to invoke the click handler function when clicked, completing the UI setup for stock analysis.
+```python
+# Create UI after fine-tuning
+alpha_vantage_api_key_widget = widgets.Text(value='', placeholder='Enter your Alpha Vantage API Key', description='Alpha Vantage API Key:')
+news_api_key_widget = widgets.Text(value='', placeholder='Enter your News API Key', description='News API Key:')
+symbol_widget = widgets.Text(value='', placeholder='Enter stock symbol (e.g., AAPL)', description='Stock Symbol:')
+output = widgets.Output()
+
+def on_button_click(b):
+    with output:
+        output.clear_output()
+        alpha_vantage_api_key = alpha_vantage_api_key_widget.value
+        news_api_key = news_api_key_widget.value
+        symbol = symbol_widget.value
+        if alpha_vantage_api_key and news_api_key and symbol:
+            try:
+                latest_price, advice, news_summary_cleaned = analyze_stock_after_finetune(alpha_vantage_api_key, news_api_key, symbol)
+
+                display(HTML(f'<h3>Current Price of {symbol}: {latest_price}</h3>'))
+                display(HTML(f'<h4>Investment Advice:</h4><p>{advice}</p>'))
+                display(HTML('<h4>Latest Financial News:</h4>'))
+
+                for title, sentiment, summary in news_summary_cleaned:
+                    display(HTML(f"<b>{title}</b> (Sentiment: {sentiment})<br>{summary}<br><br>"))
+
+                # Visualize stock data separately
+                stock_data = get_stock_data(alpha_vantage_api_key, symbol)
+                fig = go.Figure(data=[go.Candlestick(
+                    x=stock_data.index,
+                    open=stock_data['open'],
+                    high=stock_data['high'],
+                    low=stock_data['low'],
+                    close=stock_data['close']
+                )])
+                fig.update_layout(title=f'Stock Price Data for {symbol}', yaxis_title='Price (USD)', xaxis_title='Time')
+                fig.show()
+            except Exception as e:
+                print(f"An error occurred: {e}")
+        else:
+            print("Please enter the Alpha Vantage API key, News API key, and stock symbol.")
+
+button = widgets.Button(description="Analyze Stock")
+button.on_click(on_button_click)
 ```
