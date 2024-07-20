@@ -59,7 +59,8 @@
   The code snippet prints several key evaluation metrics for a model after the fine-tuning process
 #### 24.) Load the fine-tuned model
  This code snippet loads a fine-tuned model and its corresponding tokenizer from the directory ./results_after_finetune. The fine_tuned_model variable uses the AutoModelForSequenceClassification class from the transformers library to load the pre-trained model weights and configuration
-
+#### 25.) Save model after fine-tuning
+  This code snippet saves both the fine-tuned model and its associated tokenizer to the directory ./saved_model. The fine_tuned_model.save_pretrained('./saved_model') method saves the model weights and configuration to the specified directory, making it possible to reload and use the model at a later time.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -533,4 +534,11 @@ This code snippet loads a fine-tuned model and its corresponding tokenizer from 
 # Load the fine-tuned model
 fine_tuned_model = AutoModelForSequenceClassification.from_pretrained('./results_after_finetune')
 fine_tuned_tokenizer = AutoTokenizer.from_pretrained('./results_after_finetune')
+```
+#### 25.) Save model after fine-tuning
+This code snippet saves both the fine-tuned model and its associated tokenizer to the directory ./saved_model. The fine_tuned_model.save_pretrained('./saved_model') method saves the model weights and configuration to the specified directory, making it possible to reload and use the model at a later time. Similarly, the fine_tuned_tokenizer.save_pretrained('./saved_model') method saves the tokenizer's configuration and vocabulary files to the same directory. This ensures that the tokenizer, tuned alongside the model, can also be reloaded and used later. By doing so, both the model and tokenizer are preserved, facilitating consistent future use or deployment.
+```python
+# Save model after fine-tuning
+fine_tuned_model.save_pretrained('./saved_model')
+fine_tuned_tokenizer.save_pretrained('./saved_model')
 ```
