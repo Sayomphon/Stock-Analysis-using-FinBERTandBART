@@ -304,7 +304,7 @@ def custom_fine_tune(transformer_model, tokenizer, train_dataset, val_dataset, o
     return eval_results
 ```
 #### Generate advice
-The generate_advice function takes an input prompt, encodes it into tokens using the BART tokenizer, and passes these tokens to a pre-trained BART model to generate a summary. The generated summary tokens are then decoded back into a textual summary, which is returned as the function's output. This process effectively leverages the BART model for tasks such as summarization or generating advice based on the input text.
+The generate_advice function uses a pre-trained BART model to generate summarized advice based on an input prompt. The input prompt is first encoded into tokens using the BART tokenizer. The BART model then generates the summary using beam search, with specific constraints on the length of the summary and penalties to ensure it is concise and of high quality. Finally, the generated token IDs are decoded back into human-readable text, and the function returns the summarized advice. This process leverages BART's capabilities to produce coherent and meaningful summaries, making it useful for generating insights or recommendations based on the input text.
 ```python
 # Function to generate advice using BART
 def generate_advice(prompt):
@@ -313,7 +313,7 @@ def generate_advice(prompt):
     return bart_tokenizer.decode(summary_ids[0], skip_special_tokens=True)
 ```
 #### 11.) Summarize Text
-The summarize_text function takes an input text, encodes it into tokens using the BART tokenizer, and passes these tokens to a pre-trained BART model to generate a summary. The generated summary tokens are then decoded back into a textual summary, which is returned as the function's output. This function effectively leverages the BART model's capabilities for text summarization tasks, making it useful for condensing lengthy texts into more concise summaries.
+The summarize_text function uses a pre-trained BART model to generate a summary for a given input text. It first encodes the input text using the BART tokenizer with a prefix indicating that summarization is required. The encoded input is then passed through the BART model to generate the summary, using beam search and specific constraints on the length and penalties to ensure high-quality results. The generated token IDs are then decoded back into human-readable text, and the function returns the summarized text. This process utilizes BART’s strong text summarization capabilities to create coherent and concise summaries from longer texts.
 ```python
 # Function to summarize text using BART
 def summarize_text(text):
