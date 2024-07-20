@@ -37,7 +37,7 @@
   Function aims to analyze stock information and provide investment advice based on stock performance, news sentiment, and recent market trends. It utilizes APIs for stock data and news fetching,
 #### 13.) Create UI before fine-tuning
   This code snippet creates a simple user interface (UI) using the ipywidgets library in Python. The UI allows the user to input API keys for Alpha Vantage and a news service, along with a stock symbol. Upon clicking a button.
-#### 14.) Display UI
+#### 14.) Display UI before fine-tuning
   The function with these widgets as arguments, it renders these UI elements on the screen in the order they are listed. Users can interact with these input fields and the button, and the output area will be used to show the results after the user triggers the analysis by clicking the button.
 #### 15.) Load Datasets
   This function call loads the IMDB dataset, which is a popular dataset for sentiment analysis. The IMDB dataset contains movie reviews labeled as positive or negative.
@@ -65,7 +65,8 @@
   This code defines a function analyze_stock_after_finetune that performs stock analysis using a fine-tuned model for sentiment analysis of news articles. The function takes three parameters: alpha_vantage_api_key, news_api_key, and symbol.
 #### 27.) Create UI after fine-tuning
   This code sets up a user interface to perform stock analysis using input widgets for API keys and stock symbols. It initializes text input fields for the Alpha Vantage API key, the News API key, and the stock symbol, along with an output area to display results.
-
+#### 28.) Display UI after fine-tuning
+  This code snippet displays the user interface components for stock analysis in a Jupyter notebook or IPython environment. The display function is used to render the text input widgets for entering the Alpha Vantage API key, News API key, and stock symbol.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -627,3 +628,28 @@ def on_button_click(b):
 button = widgets.Button(description="Analyze Stock")
 button.on_click(on_button_click)
 ```
+#### 28.) Display UI after fine-tuning
+This code snippet displays the user interface components for stock analysis in a Jupyter notebook or IPython environment. The display function is used to render the text input widgets for entering the Alpha Vantage API key, News API key, and stock symbol. It also displays the button labeled "Analyze Stock," which triggers the analysis process when clicked. Additionally, it renders the output widget, which will be used to present the results of the analysis, such as the latest stock price, investment advice, and summarized news articles with sentiment analysis. This UI setup provides an interactive interface for users to input data and view the analysis results.
+```python
+# Display UI before fine-tuning
+display(alpha_vantage_api_key_widget, news_api_key_widget, symbol_widget, button, output)
+```
+#### Example UI use case
+![Display UI after fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/4af80ad048a04ee6dd3df8db29202019aa372cfc/Display%20UI%20after%20fine-tuning.PNG)
+#### Output after applying Analyze stock
+#### Current Price of TSLA: 249.3800
+#### Investment Advice:
+Current market trends show a bullish movement in the tech sector. News articles suggest significant investor interest. Given the current price of TSLA, generate detailed investment advice considering market trends, stock performance, and financial news. Discuss the stock's historical performance, recent news impact, and any upcoming events that may influence its price. Also, offer a strategic plan for both short-term and long-term investors. For confidential support call the Samaritans on 08457 90 90 90 or visit a local Samaritans branch, see www.samaritans.org for details. In the U.S. call the National Suicide Prevention Lifeline on 1-800-273-8255 or visit http://www.suicidepreventionlifeline.org/. In the UK, call the helpline on 0800-847-9090 or click here for confidential support. For support in the United Kingdom, call 08457 909090 or visit the Samaritans on 08457 93 90 90.
+#### Latest Financial News:
+#### Tesla robotaxi won't be ready for scale until 2030: Analyst (Sentiment: Positive)
+Tesla shares are trading higher on Friday despite a Bloomberg report indicating a twomonth delay in unveiling the company's highly anticipated new product. Tesla TSLA shares are Trading Higher on Friday Despite a Bloomberg Report indicating a Twomonth Delay in unveiling its highly anticipated product. The company is expected to unveil the new product on March 18. The stock is trading up 1.7% to $264.50 per share in Friday's pre-market trading. The market closed down 0.4% on Thursday.
+#### Cathie Wood says she wouldn't have sold Nvidia stake 'had we known that the market was going to reward it' (Sentiment: Negative)
+Cathie Woods investment fund Ark Invest sold at least 45 million worth of Nvidia stock this year per The Wall Street Journal. Cathie Woods invested in Nvidia through her company Ark Invest. Ark Invest has a $1 billion investment in the company, according to a report. The company has not responded to requests for comment on the report. For confidential support call the Samaritans on 08457 90 90 90, visit a local Samaritans branch or see www.samaritans.org for details. In the U.S. call the National Suicide Prevention Line on 1-800.
+#### EV batteries may be giving consumers headaches. Here's why. (Sentiment: Neutral)
+JD Power study found 266 problems per 100 electric vehicles versus 180 per 100 internal vehicles. Study found more problems with battery electric vehicles than internal combustion engines. Study was conducted by JD Power, a global consulting firm based in New York and Washington, D.C. The study was published in the Journal of Electric Vehicles. For more information, visit www.jdpower.com. For confidential support, call the Samaritans on 08457 90 90 90, visit a local Samaritans branch or see www.samaritans.org.
+#### Dow Jones Futures: Micron Falls On Earnings; Tesla, Amazon In Buy Zones (Sentiment: Positive)
+The major indexes rose slightly Wednesday despite modestly weak breadth. The Dow Jones Industrial Average, S&P 500, Nasdaq and Nasdaq all rose 0.2 percent. The Nasdaq was up 0.3 percent, while the Dow Jones was down 0.1 percent, and the Russell 2000 was down 1.1 per cent. The three major U.S. stock indexes were all up about 0.5 per cent on Wednesday. The Russell 2000, however, fell 0.7 per cent, and so did the Russell 1000.
+#### Traders have poured $5 billion into leveraged Nvidia ETFs. They're up 425% even after the stock's big wipeout. (Sentiment: Positive)
+The success of singlestock ETFs that track Nvidia has yet to spill over to other leveraged tech stocks. The success of leveraged technology stocks hasn't yet spilled over to leveraged singlestocks, either, as seen in this week's iShares MSCI Technology Index. The index is a leveraged exchange-traded fund that tracks technology stocks such as Nvidia, Twitter, Facebook, and others. The iShares Technology Index has a market capitalization of more than $1.2 billion.
+#### Stock price data graph
+![Stock price data after fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/69aa52ba66c0b279a9784b87304d77487a21ac6a/Stock%20price%20data%20after%20fine-tuning.PNG)
