@@ -176,7 +176,7 @@ def get_embeddings(text):
     return embeddings
 ```
 #### 7.) Creating Custom Datasets
-The CustomDataset class is designed to handle text data and prepare it for model training in a PyTorch pipeline. It tokenizes the text, handles padding and truncation, and returns the input IDs, attention mask, and corresponding labels in a dictionary format. This setup allows for efficient batching and data loading using PyTorch’s DataLoader.
+The CustomDataset class creates a custom dataset compatible with PyTorch's DataLoader. It takes in text data and labels, tokenizes the text using the provided tokenizer, and ensures each tokenized sequence is of the specified maximum length. It also handles padding and truncation appropriately. The class provides methods to get the number of samples and to retrieve a sample by index. Each retrieved sample includes token IDs, attention masks, and labels in a dictionary format, ready for use in training or evaluation with a PyTorch model.
 ```python
 # Create Custom dataset class
 class CustomDataset(torch.utils.data.Dataset):
