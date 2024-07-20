@@ -39,6 +39,8 @@
   This code snippet creates a simple user interface (UI) using the ipywidgets library in Python. The UI allows the user to input API keys for Alpha Vantage and a news service, along with a stock symbol. Upon clicking a button.
 #### 14.) Display UI
   The function with these widgets as arguments, it renders these UI elements on the screen in the order they are listed. Users can interact with these input fields and the button, and the output area will be used to show the results after the user triggers the analysis by clicking the button.
+#### 15.) Load Datasets
+  This function call loads the IMDB dataset, which is a popular dataset for sentiment analysis. The IMDB dataset contains movie reviews labeled as positive or negative.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -423,3 +425,10 @@ The major indexes rose slightly Wednesday despite modestly weak breadth. The Dow
 The success of singlestock ETFs that track Nvidia has yet to spill over to other leveraged tech stocks. The success of leveraged technology stocks hasn't yet spilled over to leveraged singlestocks, either, as seen in this week's iShares MSCI Technology Index. The index is a leveraged exchange-traded fund that tracks technology stocks such as Nvidia, Twitter, Facebook, and others. The iShares Technology Index has a market capitalization of more than $1.2 billion.
 #### Stock price data graph
 ![Stock price data before fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/d59009e070519b46a61852092ed2434fd44ad6ef/Stock%20price%20data%20before%20fine-tuning.PNG)
+#### 15.) Load Datasets
+The code utilizes the
+load_dataset
+function to load the IMDB dataset, which is commonly used for sentiment analysis tasks. The loaded dataset is stored in the variable dataset, making it available for further operations in the script.
+```python
+dataset = load_dataset('imdb')
+```
