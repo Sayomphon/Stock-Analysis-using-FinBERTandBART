@@ -55,8 +55,8 @@
   The code snippet prints several key evaluation metrics for a model before the fine-tuning process.
 #### 22.) Fine-tune the pre-trained model with 20 epochs
   This code snippet aims to fine-tune a pre-trained model using a custom function named custom_fine_tune. The function is called with several arguments: pretrained_model, tokenizer, train_dataset, val_dataset, output_dir, and epochs.
-
-
+#### 23.) Print evaluation results after fine-tuning
+  The code snippet prints several key evaluation metrics for a model after the fine-tuning process
 
 
 #### 16.) Creating an Interactive UI
@@ -513,3 +513,16 @@ eval_results_after = custom_fine_tune(pretrained_model, tokenizer, train_dataset
 ```
 #### Output while tuning
 ![While tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/c0185d1e6fcd6f8f2d423f0fe7c343593ef488eb/While%20tuning.PNG)
+#### 23.) Print evaluation results after fine-tuning
+The code snippet prints several key evaluation metrics for a model after the fine-tuning process. These metrics are stored in the eval_results_after dictionary and include loss, accuracy, precision, recall, and F1-score. Each metric provides insight into different aspects of the model's performance post-fine-tuning. Printing these metrics allows for the assessment and comparison of the model's improvements and effectiveness after the fine-tuning process.
+```python
+# Print evaluation results after fine-tuning
+print("Evaluation results after fine-tuning:")
+print(f"Loss: {eval_results_after['eval_loss']}")
+print(f"Accuracy: {eval_results_after['eval_accuracy']}")
+print(f"Precision: {eval_results_after['eval_precision']}")
+print(f"Recall: {eval_results_after['eval_recall']}")
+print(f"F1-score: {eval_results_after['eval_f1']}")
+```
+#### Output print evaluation results after fine-tuning
+![Evaluation result after fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/ec4b6f815967e6421a9195f6e4d7ad1a7e6ef9d8/Evaluation%20result%20after%20fine-tuning.PNG)
