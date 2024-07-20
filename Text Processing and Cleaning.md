@@ -12,27 +12,34 @@ def clean_text(text):
 ```python
 def clean_text(text):
 ```
-This line defines a function named clean_text that takes one parameter text.
+  - Function Definition:
+    - def clean_text(text): Defines a function named clean_text to clean and preprocess input text.
+  - Parameters:
+    - text: A string containing the text to be cleaned.
 ### Removing URLs
 ```python
     text = re.sub(r'http\S+', '', text)
 ```
-This line uses the re.sub function from the re (regular expression) module to find and remove all URLs from the text. The pattern r'http\S+' matches any substring that starts with "http" followed by any number of non whitespace characters.
+  - Removing URLs
+    re.sub(r'http\S+', '', text): Uses a regular expression to find and remove URLs from the text. The pattern 'http\S+' matches any substring that starts with 'http' followed by any number of non-whitespace characters.
 ### Removing email addresses
 ```python
     text = re.sub(r'\S+@\S+', '', text)
 ```
-This line finds and removes all email addresses from the text. The pattern r'\S+@\S+' matches any sequence of non-whitespace characters (like an email address) that contains an "@" symbol.
+  - Removing Emails
+    - re.sub(r'\S+@\S+', '', text): Uses a regular expression to find and remove email addresses from the text. The pattern '\S+@\S+' matches any email-like substring.
 ### Removing special characters
 ```python
     text = re.sub(r'[^A-Za-z0-9\s]+', '', text)
 ```
-This line removes any character that is not an uppercase letter, a lowercase letter, a digit, or a whitespace. The pattern r'[^A-Za-z0-9\s]+' matches any character that is not in the specified set and removes it from the text.
+  - Removing Special Characters
+    - re.sub(r'[^A-Za-z0-9\s]+', '', text): Uses a regular expression to find and remove any special characters from the text, keeping only letters, numbers, and whitespace. The pattern [^A-Za-z0-9\s]+ matches any character that is not a letter, number, or whitespace.
 ### Stripping whitespace
 ```python      
       text = text.strip()
 ```
-This line removes any leading or trailing whitespace from the cleaned text.
+  - Stripping Whitespace
+    - text.strip(): Removes leading and trailing whitespace from the text.
 ### Returning the cleaned text
 ```python
     return text
