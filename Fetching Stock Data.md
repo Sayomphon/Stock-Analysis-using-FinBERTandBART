@@ -31,25 +31,29 @@ This line defines a function get_stock_data that takes two parameters:
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={symbol}&interval=1min&apikey={api_key}'
 ```
 This line constructs the URL needed to fetch intraday data from the Alpha Vantage API. The URL includes:
-  - function=TIME_SERIES_INTRADAY: Specifies the type of data to fetch (intraday stock data).
-  - symbol={symbol}: The stock symbol.
-  - interval=1min: The interval between data points (1 minute in this case).
-  - apikey={api_key}: The API key for access.
+  - f'https://www.alphavantage.co/query?...: Uses an f-string to embed the api_key and symbol into the URL.
+  - function=TIME_SERIES_INTRADAY: Specifies that the function to call is TIME_SERIES_INTRADAY for intraday data.
+  - symbol={symbol}: Replaces {symbol} with the actual stock symbol provided as an argument.
+  - interval=1min: Sets the data interval to 1 minute.
+  - apikey={api_key}: Replaces {api_key} with the actual API key provided as an argument.
 ### Make the API Request
 ```python    
     response = requests.get(url)
 ```
 This line sends an HTTP GET request to the Alpha Vantage API using the constructed URL. The response from the API is stored in the response variable.
+  - requests.get(url): Uses the requests library to send an HTTP GET request to the specified URL.
 ### Parse the JSON Response
 ```python
     data = response.json()
 ```
 This line parses the JSON response from the API into a Python dictionary named data.
+  - response.json(): Parses the JSON content of the response.
 ### Check for Data Availability
 ```python    
     if 'Time Series (1min)' in data:
 ```
 This line checks if the key 'Time Series (1min)' is present in the parsed JSON data. This key indicates the availability of the time series data.
+  - if 'Time Series (1min)' in data:: Checks if the key 'Time Series (1min)' exists in the response data.
 ### Process the Data if Available
 ```python    
         df = pd.DataFrame(data['Time Series (1min)']).T
@@ -65,6 +69,7 @@ This line checks if the key 'Time Series (1min)' is present in the parsed JSON d
 ```
 If the time series data is available:
   - The function converts the relevant part of the JSON data (the time series data) into a Pandas DataFrame.
+  - .T: Transposes the DataFrame to have timestamps as rows and the data attributes (open, high, low, close, volume) as columns.
   - The columns are renamed to more user-friendly names:
     - '1. open' -> 'open'
     - '2. high' -> 'high'
