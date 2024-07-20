@@ -33,34 +33,38 @@ class MetricsCalculator:
         self.metric = load_metric("accuracy")
         self.loss_fn = torch.nn.CrossEntropyLoss()
 ```
-  - The constructor of the MetricsCalculator class initializes the class by loading a metric named "accuracy" using self.metric = load_metric("accuracy").
-  - self.loss_fn is set to Cross-Entropy Loss, which is commonly used for classification tasks.
+  - class MetricsCalculator: Defines a class named MetricsCalculator that is responsible for computing various evaluation metrics for a model.
+  - def __init__(self): This is the constructor method that initializes the class.
+  - self.metric = load_metric("accuracy"): Loads the accuracy metric using the load_metric function from the Hugging Face library.
+  - self.loss_fn = torch.nn.CrossEntropyLoss(): Initializes the loss function as cross-entropy loss, which is commonly used for classification problems.
 ### Compute_metrics Method
  ```python   
     def compute_metrics(self, eval_pred):
         predictions = eval_pred.predictions
         labels = eval_pred.label_ids
 ```
-  - This method takes an argument eval_pred, which contains the model’s predictions and the true labels.
-  - The predictions variable gets its value from eval_pred.predictions, and labels gets its value from eval_pred.label_ids.
+  - def compute_metrics(self, eval_pred): Defines a method named compute_metrics that will compute various evaluation metrics.
+  - predictions = eval_pred.predictions: Extracts the model's predictions from the evaluation output.
+  - labels = eval_pred.label_ids: Extracts the true labels from the evaluation output.
 ### Calculating Accuracy
 ```python
         # Calculate accuracy
         accuracy = self.metric.compute(predictions=predictions.argmax(axis=1), references=labels)
 ```
-  -Using self.metric, the method calculates accuracy by comparing the predicted classes (predictions.argmax(axis=1)) with the true labels (labels).
+  - accuracy = self.metric.compute(predictions=predictions.argmax(axis=1), references=labels): Computes the accuracy by comparing the predicted labels (obtained using argmax on predictions) with the true labels.
 ### Calculating Loss
 ```python
         # Calculate loss
         loss = self.loss_fn(torch.tensor(predictions), torch.tensor(labels)).item()
 ```
-  - The method calculates the loss using the Cross-Entropy Loss function (self.loss_fn). It converts predictions and labels into tensors and computes the loss. The result is converted to a scalar value using .item().
+  - loss = self.loss_fn(torch.tensor(predictions), torch.tensor(labels)).item() : Computes the cross-entropy loss between the predictions and the true labels. The item() method extracts the scalar value from the loss tensor.
 ### Calculating Precision, Recall, and F1-Score
 ```python
         # Calculate precision, recall, f1-score
         precision, recall, f1, _ = precision_recall_fscore_support(labels, predictions.argmax(axis=1), average='weighted')
 ```
-  - It uses the precision_recall_fscore_support function (assumed to be from sklearn) to compute precision, recall, and F1-score. It compares labels with the predicted classes (predictions.argmax(axis=1)) using 'weighted' averaging.
+  - precision, recall, f1, _ = precision_recall_fscore_support(labels, predictions.argmax(axis=1), average='weighted'): Computes the precision, recall, and F1-score using the precision_recall_fscore_support
+function. The average='weighted' parameter weights the metrics by the number of true instances for each label.'weighted' averaging.
 ### Returning the Results
  ```python
         return {
@@ -71,4 +75,9 @@ class MetricsCalculator:
             'eval_f1': f1,
         }
 ```
-  -- The method returns a dictionary containing the calculated evaluation metrics: eval_accuracy, eval_loss, eval_precision, eval_recall, and eval_f1.
+  - Returns a dictionary containing the calculated metrics:
+    - eval_accuracy: The computed accuracy.
+    - eval_loss: The computed loss.
+    - eval_precision: The computed precision.
+    - eval_recall: The computed recall.
+    - eval_f1: The computed F1-score.
