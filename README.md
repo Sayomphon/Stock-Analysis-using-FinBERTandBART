@@ -108,14 +108,7 @@ from torch.utils.data import DataLoader
 from sklearn.metrics import precision_recall_fscore_support
 ```
 #### 2.) Fetching Stock Data
-Defines a function named get_stock_data(api_key, symbol) that fetches intraday stock data for a given symbol using the Alpha Vantage API. This version of the function includes error handling to ensure that the data is available before proceeding with further processing.
-#### The get_stock_data function:
-  - Constructs a URL to fetch intraday stock data.
-  - Sends an HTTP GET request to the Alpha Vantage API.
-  - Parses the JSON response.
-  - Checks if the time series data is available.
-  - If available, converts the data into a Pandas DataFrame, renames the columns, converts the index to datetime objects, and returns the DataFrame.
-  - If not available, raises an error with a descriptive message.
+The get_stock_data function fetches intraday stock data for a given stock symbol using the Alpha Vantage API. It constructs the API request URL, sends an HTTP GET request, and processes the JSON response into a pandas DataFrame. The function ensures the DataFrame has readable column names and datetime index for ease of use. If the data is not available or the API request fails, the function raises an error, providing the response for debugging.
 ```python
 # Function to fetch intraday stock data
 def get_stock_data(api_key, symbol):
