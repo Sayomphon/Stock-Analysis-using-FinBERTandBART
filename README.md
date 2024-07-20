@@ -543,8 +543,4 @@ fine_tuned_model.save_pretrained('./saved_model')
 fine_tuned_tokenizer.save_pretrained('./saved_model')
 ```
 #### Result
-('./saved_model/tokenizer_config.json',
- './saved_model/special_tokens_map.json',
- './saved_model/vocab.txt',
- './saved_model/added_tokens.json',
- './saved_model/tokenizer.json')
+![Save model after fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/a43a9802a68697464485fb9ab555d027e9d142e4/Save%20model%20after%20fine-tuning.PNG)
