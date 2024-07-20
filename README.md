@@ -41,6 +41,8 @@
   The function with these widgets as arguments, it renders these UI elements on the screen in the order they are listed. Users can interact with these input fields and the button, and the output area will be used to show the results after the user triggers the analysis by clicking the button.
 #### 15.) Load Datasets
   This function call loads the IMDB dataset, which is a popular dataset for sentiment analysis. The IMDB dataset contains movie reviews labeled as positive or negative.
+#### 16.) Split into training and validation sets
+  This section of the code is used to split the loaded dataset into training and validation sets, specifically extracting the texts and their corresponding labels for each set.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -431,4 +433,13 @@ load_dataset
 function to load the IMDB dataset, which is commonly used for sentiment analysis tasks. The loaded dataset is stored in the variable dataset, making it available for further operations in the script.
 ```python
 dataset = load_dataset('imdb')
+```
+#### 16.) Split into training and validation sets
+The code extracts the text and label data from the training and validation (test) sets of the dataset. It assigns these extracted elements to the variables train_texts, train_labels, val_texts, and val_labels. This separation is crucial for training a model and evaluating its performance using distinct datasets.
+```python
+# Split into training and validation sets
+train_texts = dataset['train']['text']
+train_labels = dataset['train']['label']
+val_texts = dataset['test']['text']
+val_labels = dataset['test']['label']
 ```
