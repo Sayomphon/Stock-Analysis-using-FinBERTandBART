@@ -404,3 +404,4 @@ function to render a user interface where users can enter their Alpha Vantage AP
 display(alpha_vantage_api_key_widget, news_api_key_widget, symbol_widget, button, output)
 ```
 #### Example UI use case
+Display UI.PNG
