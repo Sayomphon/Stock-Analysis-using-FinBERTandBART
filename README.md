@@ -294,7 +294,7 @@ def custom_fine_tune(transformer_model, tokenizer, train_dataset, val_dataset, o
     return eval_results
 ```
 #### 10.) Generate advice
-The generate_advice function uses a pre-trained BART model to generate summarized advice based on an input prompt. The input prompt is first encoded into tokens using the BART tokenizer. The BART model then generates the summary using beam search, with specific constraints on the length of the summary and penalties to ensure it is concise and of high quality. Finally, the generated token IDs are decoded back into human-readable text, and the function returns the summarized advice. This process leverages BART's capabilities to produce coherent and meaningful summaries, making it useful for generating insights or recommendations based on the input text.
+The generate_advice function uses a pre-trained BART model to generate advice based on a given prompt. The function first encodes the input prompt with a prefix "summarize: " using the BART tokenizer, converting it into PyTorch tensors. The encoded input is then fed into the BART model to generate a summary, with constraints on the maximum and minimum length, as well as other generation parameters to ensure high-quality output. Finally, the function decodes the generated token IDs back into human-readable text and returns this summary as the resulting advice. This process leverages the BART model's strong text summarization capabilities to produce coherent and concise advice from longer prompts.
 ```python
 # Function to generate advice using BART
 def generate_advice(prompt):
