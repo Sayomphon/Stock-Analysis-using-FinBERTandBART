@@ -53,6 +53,12 @@
   This code sets up an evaluation framework for assessing the performance of a pre-trained model before fine-tuning
 #### 21.) Print evaluation results before fine-tuning
   The code snippet prints several key evaluation metrics for a model before the fine-tuning process.
+#### 22.) Fine-tune the pre-trained model with 20 epochs
+  This code snippet aims to fine-tune a pre-trained model using a custom function named custom_fine_tune. The function is called with several arguments: pretrained_model, tokenizer, train_dataset, val_dataset, output_dir, and epochs.
+
+
+
+
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -499,3 +505,11 @@ print(f"F1-score: {eval_results_before['eval_f1']}")
 ```
 #### Output print evaluation results before fine-tuning
 ![Evaluation result before fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/45c8c189f3e60afa41326c1419455262c6af2b52/Evaluation%20result%20before%20fine-tuning.PNG)
+#### 22.) Fine-tune the pre-trained model with 20 epochs
+This code snippet aims to fine-tune a pre-trained model using a custom function named custom_fine_tune. The function is called with several arguments: pretrained_model, tokenizer, train_dataset, val_dataset, output_dir, and epochs. The pretrained_model is the model that will be fine-tuned, while the tokenizer is used to preprocess the input text data. The train_dataset is the dataset employed for training the model, adjusting its weights based on this data. The val_dataset is used to validate the model's performance during the fine-tuning process. The output_dir specifies the directory ./results_after_finetune where the results of the fine-tuning process will be stored. The epochs parameter indicates that the fine-tuning should run for 20 epochs, meaning the model will iterate over the entire training dataset 20 times to refine its performance. Once the fine-tuning process is completed, the evaluation results are stored in the eval_results_after variable, which can then be used to assess any improvements in the model's performance.
+```python
+# Fine-tune the pre-trained model with 20 epoch
+eval_results_after = custom_fine_tune(pretrained_model, tokenizer, train_dataset, val_dataset, output_dir='./results_after_finetune', epochs=20)
+```
+#### Output while tuning
+![While tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/c0185d1e6fcd6f8f2d423f0fe7c343593ef488eb/While%20tuning.PNG)
