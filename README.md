@@ -45,7 +45,7 @@
   This section of the code is used to split the loaded dataset into training and validation sets, specifically extracting the texts and their corresponding labels for each set.
 #### 17.) Tokenizer
   The code initializes a tokenizer, which is responsible for converting text into a format that can be fed into a machine learning model.
-#### 18.) Create custom datasets
+#### 18.) Custom datasets
   This section of the code creates custom datasets for training and validation by wrapping text and label data along with tokenization logic.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
@@ -453,7 +453,7 @@ The code initializes a pre-trained BERT tokenizer using the Hugging Face library
 # Tokenizer
 tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
 ```
-#### 18.) Create custom datasets
+#### 18.) Custom datasets
 The code creates custom datasets for training and validation by utilizing a custom dataset class named CustomDataset. It takes in the text and label data, along with a tokenizer and a specified maximum sequence length of 128 tokens. This setup ensures that both the training and validation datasets are properly tokenized and formatted, making them ready for use in training and evaluating a machine learning model.
 ```python
 train_dataset = CustomDataset(train_texts, train_labels, tokenizer, max_length=128)
