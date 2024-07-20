@@ -61,6 +61,11 @@
  This code snippet loads a fine-tuned model and its corresponding tokenizer from the directory ./results_after_finetune. The fine_tuned_model variable uses the AutoModelForSequenceClassification class from the transformers library to load the pre-trained model weights and configuration
 #### 25.) Save model after fine-tuning
   This code snippet saves both the fine-tuned model and its associated tokenizer to the directory ./saved_model. The fine_tuned_model.save_pretrained('./saved_model') method saves the model weights and configuration to the specified directory, making it possible to reload and use the model at a later time.
+#### 26.) Function for stock analysis after fine-tuning
+  This code defines a function analyze_stock_after_finetune that performs stock analysis using a fine-tuned model for sentiment analysis of news articles. The function takes three parameters: alpha_vantage_api_key, news_api_key, and symbol.
+
+
+
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -544,3 +549,36 @@ fine_tuned_tokenizer.save_pretrained('./saved_model')
 ```
 #### Result
 ![Save model after fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/a43a9802a68697464485fb9ab555d027e9d142e4/Save%20model%20after%20fine-tuning.PNG)
+#### 26.) Function for stock analysis after fine-tuning
+This code defines a function analyze_stock_after_finetune that performs stock analysis using a fine-tuned model for sentiment analysis of news articles. The function takes three parameters: alpha_vantage_api_key, news_api_key, and symbol. It first fetches the latest stock data using the Alpha Vantage API and retrieves the most recent closing price. Next, it fetches the latest news articles related to the stock symbol using a news API. The function then processes the first five news articles, cleans the text, tokenizes them, and uses the fine-tuned model to predict the sentiment of each article. The sentiment is labeled as "Positive," "Negative," or "Neutral" and added to a list along with the article title and cleaned description. The function creates a detailed prompt that incorporates market trends, stock performance, and news data to generate comprehensive investment advice. This prompt is passed to a function named generate_advice, which produces the investment advice based on the provided context. Finally, the function returns the latest stock price, the generated investment advice, and the list of cleaned news summaries along with their sentiment labels. This combined analysis offers a comprehensive view of the stock's current status and future potential.
+```python
+# Function for stock analysis after fine-tuning
+def analyze_stock_after_finetune(alpha_vantage_api_key, news_api_key, symbol):
+    stock_data = get_stock_data(alpha_vantage_api_key, symbol)
+    latest_price = stock_data['close'].iloc[0]
+
+    news_data = get_latest_news(symbol, news_api_key)
+    news_summary_cleaned = []
+
+    if news_data and 'articles' in news_data:
+        for article in news_data['articles'][:5]:
+            description = clean_text(article['description'])
+            inputs = fine_tuned_tokenizer(description, return_tensors='pt', padding=True, truncation=True, max_length=512)
+            outputs = fine_tuned_model(**inputs)
+            sentiment = torch.argmax(outputs.logits, dim=1).item()
+            sentiment_label = "Positive" if sentiment == 1 else "Negative" if sentiment == 0 else "Neutral"
+
+            news_summary_cleaned.append((article['title'], sentiment_label, description))
+
+    advice_prompt = (
+        f"Current market trends show a bullish movement in the tech sector. {symbol} has been gaining momentum. "
+        f"News articles suggest significant investor interest. Given the current price of {symbol}, generate detailed investment advice "
+        f"considering market trends, stock performance, and financial news. "
+        f"Provide a thorough analysis including potential risks, market conditions, and long-term investment potential. "
+        f"Discuss the stock's historical performance, recent news impact, and any upcoming events that may influence its price. "
+        f"Also, offer a strategic plan for both short-term and long-term investors."
+    )
+
+    advice = generate_advice(advice_prompt)
+    return latest_price, advice, news_summary_cleaned
+```
