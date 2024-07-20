@@ -404,4 +404,4 @@ function to render a user interface where users can enter their Alpha Vantage AP
 display(alpha_vantage_api_key_widget, news_api_key_widget, symbol_widget, button, output)
 ```
 #### Example UI use case
-Display UI.PNG
+[Display UI.PNG](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/bcc278dce82d0ed339873e211168cb172a4dea31/Display%20UI.PNG)
