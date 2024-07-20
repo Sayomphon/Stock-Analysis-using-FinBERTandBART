@@ -67,10 +67,8 @@
   This code sets up a user interface to perform stock analysis using input widgets for API keys and stock symbols. It initializes text input fields for the Alpha Vantage API key, the News API key, and the stock symbol, along with an output area to display results.
 #### 28.) Display UI after fine-tuning
   This code snippet displays the user interface components for stock analysis in a Jupyter notebook or IPython environment. The display function is used to render the text input widgets for entering the Alpha Vantage API key, News API key, and stock symbol.
-#### 16.) Creating an Interactive UI
-  The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
-#### A button is available for users to click to perform stock analysis and display the results.
-
+#### 29.) Load saved model
+  This code snippet loads a fine-tuned model and its associated tokenizer from the directory specified by the saved_model_path variable ('./saved_model').
 ## Use Case
 #### 1.) Investors:
   - Usage: Investors can use this code to fetch stock data and news related to a specific stock, such as AAPL (Apple Inc.), and receive a market trend prediction and investment advice.
@@ -653,3 +651,11 @@ The major indexes rose slightly Wednesday despite modestly weak breadth. The Dow
 The success of singlestock ETFs that track Nvidia has yet to spill over to other leveraged tech stocks. The success of leveraged technology stocks hasn't yet spilled over to leveraged singlestocks, either, as seen in this week's iShares MSCI Technology Index. The index is a leveraged exchange-traded fund that tracks technology stocks such as Nvidia, Twitter, Facebook, and others. The iShares Technology Index has a market capitalization of more than $1.2 billion.
 #### Stock price data graph
 ![Stock price data after fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/69aa52ba66c0b279a9784b87304d77487a21ac6a/Stock%20price%20data%20after%20fine-tuning.PNG)
+#### 29.) Load saved model
+This code snippet loads a fine-tuned model and its associated tokenizer from the directory specified by the saved_model_path variable ('./saved_model'). The fine_tuned_model variable uses the AutoModelForSequenceClassification class from the transformers library to load the model's weights and configuration, which have been fine-tuned for sequence classification tasks. Similarly, the fine_tuned_tokenizer variable uses the AutoTokenizer class to load the tokenizer configuration and vocabulary that were fine-tuned alongside the model. By invoking the from_pretrained method with the specified directory path, both the model and tokenizer are reloaded, making them ready for further use in tasks such as text classification or sentiment analysis.
+```python
+# Load saved model
+saved_model_path = './saved_model'
+fine_tuned_model = AutoModelForSequenceClassification.from_pretrained(saved_model_path)
+fine_tuned_tokenizer = AutoTokenizer.from_pretrained(saved_model_path)
+```
