@@ -404,7 +404,7 @@ function to render a user interface where users can enter their Alpha Vantage AP
 display(alpha_vantage_api_key_widget, news_api_key_widget, symbol_widget, button, output)
 ```
 #### Example UI use case
-![Display UI](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/bcc278dce82d0ed339873e211168cb172a4dea31/Display%20UI.PNG)
+![Display UI before fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/bcc278dce82d0ed339873e211168cb172a4dea31/Display%20UI.PNG)
 #### Out put after applying Analyze stock
 
 #### Current Price of TSLA: 249.3800
@@ -421,3 +421,5 @@ JD Power study found 266 problems per 100 electric vehicles versus 180 per 100 i
 The major indexes rose slightly Wednesday despite modestly weak breadth. The Dow Jones Industrial Average, S&P 500, Nasdaq and Nasdaq all rose 0.2 percent. The Nasdaq was up 0.3 percent, while the Dow Jones was down 0.1 percent, and the Russell 2000 was down 1.1 per cent. The three major U.S. stock indexes were all up about 0.5 per cent on Wednesday. The Russell 2000, however, fell 0.7 per cent, and so did the Russell 1000.
 ##### Traders have poured $5 billion into leveraged Nvidia ETFs. They're up 425% even after the stock's big wipeout. (Sentiment: Positive)
 The success of singlestock ETFs that track Nvidia has yet to spill over to other leveraged tech stocks. The success of leveraged technology stocks hasn't yet spilled over to leveraged singlestocks, either, as seen in this week's iShares MSCI Technology Index. The index is a leveraged exchange-traded fund that tracks technology stocks such as Nvidia, Twitter, Facebook, and others. The iShares Technology Index has a market capitalization of more than $1.2 billion.
+#### Stock price data graph
+![Stock price data before fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/d59009e070519b46a61852092ed2434fd44ad6ef/Stock%20price%20data%20before%20fine-tuning.PNG)
