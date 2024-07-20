@@ -37,12 +37,15 @@ def analyze_stock_before_finetune(alpha_vantage_api_key, news_api_key, symbol):
     stock_data = get_stock_data(alpha_vantage_api_key, symbol)
     latest_price = stock_data['close'][0]
 ```
-  - The analyze_stock_before_finetune function takes three parameters:
-    - alpha_vantage_api_key: API key for Alpha Vantage to fetch stock data.
-    - news_api_key: API key to fetch latest news (using a news API).
-    - symbol: The stock symbol to be analyzed.
-  - stock_data is retrieved using the get_stock_data function which fetches stock data for the given symbol.
-  - latest_price is assigned the closing price of the latest trading day from the fetched stock data.
+  - Function Definition:
+    - def analyze_stock_before_finetune(alpha_vantage_api_key, news_api_key, symbol): Defines a function named analyze_stock_before_finetune to analyze stock data and related news before fine-tuning a model.
+  - Parameters:
+    - alpha_vantage_api_key: The API key for accessing Alpha Vantage, a provider of real-time and historical market data.
+    - news_api_key: The API key for accessing a news provider API.
+    - symbol: The stock symbol (ticker) to be analyzed (e.g., AAPL for Apple Inc.).
+  - Stock Data Retrieval and Latest Price:
+    - stock_data = get_stock_data(alpha_vantage_api_key, symbol): Calls a function to retrieve stock data using the Alpha Vantage API.
+    - latest_price = stock_data['close'][0]: Extracts the latest closing price from the retrieved stock data.
 ### Fetching Latest News
 
 ```python
@@ -50,8 +53,8 @@ def analyze_stock_before_finetune(alpha_vantage_api_key, news_api_key, symbol):
     news_data = get_latest_news(symbol, news_api_key)
     news_summary_cleaned = []
 ```
-  - news_data is fetched using the get_latest_news function which retrieves news articles related to the given stock symbol.
-  - news_summary_cleaned is an empty list to store processed news summaries, sentiment labels, and embeddings.
+  - news_data = get_latest_news(symbol, news_api_key): Calls a function to retrieve the latest news articles related to the stock symbol using a news provider API.
+  - news_summary_cleaned = []: Initializes an empty list to store cleaned and summarized news data.
 ### Processing News Articles
 Fetches and processes the latest news articles related to the stock symbol, analyzing their sentiment, summarizing the content, and generating text embeddings.
 ```python
@@ -71,14 +74,20 @@ Fetches and processes the latest news articles related to the stock symbol, anal
 
             news_summary_cleaned.append((article['title'], sentiment_label, summary, embeddings))
 ```
-  - If news_data contains articles, it iterates through the first 5 articles.
-  - description is cleaned using the clean_text function.
-  - inputs are tokenized using finbert_tokenizer and converted to a PyTorch tensor with padding and truncation.
-  - outputs are generated using the finbert_model to get the logits.
-  - sentiment is determined by applying argmax on the logits to get the sentiment label (Positive, Negative, or Neutral).
-  - summary of the news is generated using the summarize_text function.
-  - embeddings for the cleaned text are generated using the get_embeddings function.
-  - Append a tuple of (article['title'], sentiment_label, summary, embeddings) to news_summary_cleaned.
+  - News Articles Processing:
+    - if news_data and 'articles' in news_data: Checks if the news data contains articles.
+    - for article in news_data['articles'][:5]: Loops through the top 5 news articles.
+  - Processing Each Article:
+    - description = clean_text(article['description']): Cleans the text description of the news article.
+    - inputs = finbert_tokenizer(description, return_tensors='pt', padding=True, truncation=True, max_length=512): Tokenizes the cleaned text using the FinBERT tokenizer.
+    - outputs = finbert_model(**inputs): Passes the tokenized inputs through the FinBERT model to get sentiment outputs.
+    - sentiment = torch.argmax(outputs.logits, dim=1).item(): Determines the sentiment (positive, negative, or neutral) by finding the index with the highest logit score.
+    - sentiment_label = "Positive" if sentiment == 1 else "Negative" if sentiment == 0 else "Neutral": Converts the sentiment index to a readable label.
+  - Summary and Embeddings:
+    - summary = summarize_text(description): Calls a function to summarize the cleaned text using a summarization model.
+    - embeddings = get_embeddings(description): Calls a function to get the embeddings of the cleaned text.
+  - Append Processed Article Data:
+    - news_summary_cleaned.append((article['title'], sentiment_label, summary, embeddings)): Appends the processed news data (title, sentiment label, summary, embeddings) to the list.
 ### Generating Investment Advice
 Creates a detailed prompt and generates investment advice taking into account market trends, stock performance, and recent news.
 ```python
