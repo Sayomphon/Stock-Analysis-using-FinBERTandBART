@@ -51,6 +51,8 @@
   This line of code loads a pre-trained model for sequence classification tasks, specifically the BERT model.
 #### 20.) Evaluate the pre-trained model before fine-tuning
   This code sets up an evaluation framework for assessing the performance of a pre-trained model before fine-tuning
+#### 21.) Print evaluation results before fine-tuning
+  The code snippet prints several key evaluation metrics for a model before the fine-tuning process.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -483,4 +485,15 @@ trainer_before = Trainer(
 )
 
 eval_results_before = trainer_before.evaluate()
+```
+#### 21.) Print evaluation results before fine-tuning
+The code snippet prints several key evaluation metrics for a model before the fine-tuning process. These metrics are stored in the eval_results_before dictionary and include loss, accuracy, precision, recall, and F1-score. Each metric provides insight into different aspects of the model's performance, offering a benchmark for later comparison with post-fine-tuning results. The structured approach helps ensure clarity and comprehensibility of the evaluation results.
+```python
+# Print evaluation results before fine-tuning
+print("Evaluation results before fine-tuning:")
+print(f"Loss: {eval_results_before['eval_loss']}")
+print(f"Accuracy: {eval_results_before['eval_accuracy']}")
+print(f"Precision: {eval_results_before['eval_precision']}")
+print(f"Recall: {eval_results_before['eval_recall']}")
+print(f"F1-score: {eval_results_before['eval_f1']}")
 ```
