@@ -405,7 +405,7 @@ display(alpha_vantage_api_key_widget, news_api_key_widget, symbol_widget, button
 ```
 #### Example UI use case
 ![Display UI before fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/bcc278dce82d0ed339873e211168cb172a4dea31/Display%20UI.PNG)
-#### Out put after applying Analyze stock
+#### Output after applying Analyze stock
 
 #### Current Price of TSLA: 249.3800
 #### Investment Advice:
