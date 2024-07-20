@@ -92,8 +92,7 @@ output.enable_custom_widget_manager()
 ```
 ## 2. Main Functionality of the Code
 #### 1.) Installing and Enabling Libraries
-The following libraries and modules are imported for the project
-This project imports multiple libraries required for building an application related to applied NLP, stock analysis, and creating interactive interfaces. Detailed steps and explanations are provided in the related sections to help understand the usage and functionality of each library.
+This script imports a comprehensive set of libraries crucial for setting up a machine learning environment, particularly focusing on NLP tasks. It brings together tools for data handling (pandas, requests), model building and training (transformers, torch), interactive visualization (ipywidgets, plotly), and performance evaluation (datasets, sklearn.metrics). The combination of these imports indicates the script is geared towards creating NLP models, preprocessing data, visualizing results, and interacting with data in a Jupyter notebook setup.
 ```python
 import requests
 import pandas as pd
