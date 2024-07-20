@@ -59,14 +59,17 @@ The function custom_fine_tune takes multiple parameters
 # Function to fine-tune a pre-trained model
 def custom_fine_tune(transformer_model, tokenizer, train_dataset, val_dataset, output_dir, epochs=3, batch_size=16, learning_rate=2e-5):
 ```
-  - transformer_model: The pre-trained transformer model to be fine-tuned.
-  - tokenizer: The tokenizer corresponding to the transformer model.
-  - train_dataset: The dataset used for training.
-  - val_dataset: The dataset used for validation.
-  - output_dir: The directory where the trained model and tokenizer will be saved.
-  - epochs: The number of training epochs (default is 3).
-  - batch_size: The batch size for training and evaluation (default is 16).
-  - learning_rate: The learning rate for optimization (default is 2e-5).
+  - Function Definition:
+    - def custom_fine_tune(...): Defines a function named custom_fine_tune to fine-tune a pre-trained transformer model.
+  - Parameters:
+    - transformer_model: The pre-trained transformer model to be fine-tuned.
+    - tokenizer: The tokenizer associated with the transformer model.
+    - train_dataset: The custom dataset used for training the model.
+    - val_dataset: The custom dataset used for validating the model.
+    - output_dir: The directory where the fine-tuned model and results will be saved.
+    - epochs: The number of epochs to train the model (default is 3).
+    - batch_size: The batch size for training and evaluation (default is 16).
+    - learning_rate: The learning rate for the optimizer (default is 2e-5).
 ### Training Arguments
 TrainingArguments is instantiated with various settings
 ```python
@@ -121,6 +124,7 @@ An instance of MetricsCalculator is created for computing evaluation metrics.
     # Instantiate your MetricsCalculator
     metrics_calculator = MetricsCalculator()
 ```
+  - metrics_calculator = MetricsCalculator(): Initializes an instance of a custom metrics calculator to compute performance metrics.
 ### Trainer Initialization:
 A Trainer object is created with the following parameters
 ```python
@@ -135,26 +139,30 @@ A Trainer object is created with the following parameters
         callbacks=[EarlyStoppingCallback(early_stopping_patience=3)],
     )
 ```
-  - model: The model to be fine-tuned.
-  - args: The training arguments.
-  - train_dataset: The training dataset.
-  - eval_dataset: The evaluation dataset.
-  - tokenizer: The tokenizer to use.
-  - data_collator: A data collator for dynamic padding.
-  - compute_metrics: The function to compute evaluation metrics.
-  - callbacks: Early stopping callback with patience of 3 epochs.
+  - Trainer Setup:
+    - Trainer(...): Sets up the Trainer object with the specified configuration:
+    - model: The model to be trained.
+    - args: The training arguments.
+    - train_dataset: The dataset used for training.
+    - eval_dataset: The dataset used for evaluation.
+    - tokenizer: The tokenizer to preprocess the data.
+    - data_collator: The data collator to handle batching and padding.
+    - compute_metrics: The function to compute metrics, provided by the metrics calculator.
+    - callbacks: List of callbacks, including early stopping with patience set to 3 epochs.
 ### Start Training:
 The trainer.train() method starts the fine-tuning process.
 ```python
     # Start training
     trainer.train()
 ```
+  - trainer.train(): Initiates the training process.
 ### Evaluate the Model:
 The trainer.evaluate() method evaluates the fine-tuned model on the validation dataset and stores the results in eval_results.
 ```python
     # Evaluate the model
     eval_results = trainer.evaluate()
 ```
+  - eval_results = trainer.evaluate(): Evaluates the model on the validation set after training.
 ### Save Model and Tokenizer:
 The fine-tuned model and tokenizer are saved to the specified output directory using model.save_pretrained(output_dir) and tokenizer.save_pretrained(output_dir)
 ```python
@@ -162,6 +170,8 @@ The fine-tuned model and tokenizer are saved to the specified output directory u
     model.save_pretrained(output_dir)
     tokenizer.save_pretrained(output_dir)
 ```
+  - model.save_pretrained(output_dir): Saves the trained model to the specified directory.
+  - tokenizer.save_pretrained(output_dir): Saves the tokenizer to the specified directory.
 ### Return Evaluation Results:
 The function returns the evaluation results.
 ```python
