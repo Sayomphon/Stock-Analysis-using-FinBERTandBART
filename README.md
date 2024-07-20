@@ -49,6 +49,8 @@
   This section of the code creates custom datasets for training and validation by wrapping text and label data along with tokenization logic.
 #### 19.) Load the Pre-Trained Model
   This line of code loads a pre-trained model for sequence classification tasks, specifically the BERT model.
+#### 20.) Evaluate the pre-trained model before fine-tuning
+  This code sets up an evaluation framework for assessing the performance of a pre-trained model before fine-tuning
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -454,4 +456,31 @@ The code initializes a pre-trained BERT model for sequence classification by loa
 ```python
 # Load the pre-trained model
 pretrained_model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
+```
+#### 20.) Evaluate the pre-trained model before fine-tuning
+This code sets up an evaluation framework for assessing the performance of a pre-trained model before fine-tuning it. First, it initializes a MetricsCalculator and sets training arguments using TrainingArguments. It then creates a Trainer instance with the pre-trained model, evaluation dataset, tokenizer, and metrics calculation function. Finally, it evaluates the model and stores the results in the eval_results_before variable. This evaluation provides a baseline performance metric for the pre-trained model, which can be useful for comparison after further fine-tuning.
+```python
+# Evaluate the pre-trained model before fine-tuning
+
+# Instantiate your MetricsCalculator
+metrics_calculator = MetricsCalculator()
+
+# Evaluate the pre-trained model before fine-tuning
+training_args = TrainingArguments(
+    output_dir='./results_before',
+    per_device_eval_batch_size=16,
+    logging_dir='./logs',
+    fp16=True,
+    gradient_accumulation_steps=2,
+)
+
+trainer_before = Trainer(
+    model=pretrained_model,
+    args=training_args,
+    eval_dataset=val_dataset,
+    tokenizer=tokenizer,
+    compute_metrics=metrics_calculator.compute_metrics
+)
+
+eval_results_before = trainer_before.evaluate()
 ```
