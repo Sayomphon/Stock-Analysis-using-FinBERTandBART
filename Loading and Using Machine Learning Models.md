@@ -7,6 +7,7 @@ bart_tokenizer = BartTokenizer.from_pretrained('facebook/bart-large-cnn')
 bart_model = BartForConditionalGeneration.from_pretrained('facebook/bart-large-cnn')
 sentence_encoder = SentenceTransformer('all-mpnet-base-v2')
 ```
+This section of the code loads various pre-trained models and their corresponding tokenizers, setting them up for use in tasks such as sentiment analysis, text summarization, and sentence embedding.
 ### Loading the FinBERT Tokenizer and Model
 ```python
 finbert_tokenizer = AutoTokenizer.from_pretrained('yiyanghkust/finbert-tone')
