@@ -34,7 +34,7 @@ The function sends an HTTP GET request to the constructed URL to fetch the news 
   - news_url: The URL that was constructed to fetch the news articles.
 ### Returning the Response
 Finally, the function returns the response data in JSON format:
-````python    
+```python   
     return response.json()
 ```
   - return response.json(): Converts the API response to JSON format and returns it. This JSON object contains the news articles and related metadata.
