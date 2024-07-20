@@ -57,7 +57,8 @@
   This code snippet aims to fine-tune a pre-trained model using a custom function named custom_fine_tune. The function is called with several arguments: pretrained_model, tokenizer, train_dataset, val_dataset, output_dir, and epochs.
 #### 23.) Print evaluation results after fine-tuning
   The code snippet prints several key evaluation metrics for a model after the fine-tuning process
-
+#### 24.) Load the fine-tuned model
+ This code snippet loads a fine-tuned model and its corresponding tokenizer from the directory ./results_after_finetune. The fine_tuned_model variable uses the AutoModelForSequenceClassification class from the transformers library to load the pre-trained model weights and configuration
 
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
@@ -526,3 +527,10 @@ print(f"F1-score: {eval_results_after['eval_f1']}")
 ```
 #### Output print evaluation results after fine-tuning
 ![Evaluation result after fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/ec4b6f815967e6421a9195f6e4d7ad1a7e6ef9d8/Evaluation%20result%20after%20fine-tuning.PNG)
+#### 24.) Load the fine-tuned model
+This code snippet loads a fine-tuned model and its corresponding tokenizer from the directory ./results_after_finetune. The fine_tuned_model variable uses the AutoModelForSequenceClassification class from the transformers library to load the pre-trained model weights and configuration, which have been fine-tuned for sequence classification tasks. Similarly, the fine_tuned_tokenizer variable uses the AutoTokenizer class to load the tokenizer that was fine-tuned alongside the model. The from_pretrained method in both cases specifies the directory containing the fine-tuned model and tokenizer, allowing them to be loaded for further use.
+```python
+# Load the fine-tuned model
+fine_tuned_model = AutoModelForSequenceClassification.from_pretrained('./results_after_finetune')
+fine_tuned_tokenizer = AutoTokenizer.from_pretrained('./results_after_finetune')
+```
