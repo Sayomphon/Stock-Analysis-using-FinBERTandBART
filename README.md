@@ -168,7 +168,7 @@ bart_model = BartForConditionalGeneration.from_pretrained('facebook/bart-large-c
 sentence_encoder = SentenceTransformer('all-mpnet-base-v2')
 ```
 #### 6.) Generate dense vector representations
-The get_embeddings function takes a text input, uses the SentenceTransformer model to encode this text into dense embeddings, and then returns these embeddings. These embeddings can be used in various downstream tasks, such as semantic similarity computation, clustering, or as input features for machine learning models.
+The get_embeddings function takes a piece of text as input and uses a pre-initialized sentence encoder to generate its embeddings. The function calls the encode method of the sentence_encoder to obtain a high-dimensional numerical vector that captures the semantic meaning of the input text. It then returns these embeddings, which can be used for various tasks such as similarity comparison, clustering, or input to other machine learning models. This function abstracts the process of embedding generation, making it easy to obtain consistent representations of text.
 ```python
 # Function embedding
 def get_embeddings(text):
