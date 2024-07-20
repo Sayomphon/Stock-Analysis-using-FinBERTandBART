@@ -43,11 +43,12 @@ This line defines a class named CustomDataset that inherits from torch.utils.dat
         self.tokenizer = tokenizer
         self.max_length = max_length
 ```
+Initializes an instance of the CustomDataset class.
   - __init__: The constructor method is used to initialize the dataset object.
-  - texts: A list of text samples.
-  - labels: A list of corresponding labels for the text samples.
-  - tokenizer: The tokenizer object (such as a BERT tokenizer) that will be used to tokenize the text samples.
-  - max_length: The maximum length for each tokenized sequence.
+  - texts: A list of strings, where each string is a text sample.
+  - labels: A list of corresponding labels for each text sample.
+  - tokenizer: A tokenizer used to convert text into tokens suitable for a model.
+  - max_length: The maximum length of the tokenized input sequence.
 ### Length Method (__len__)
 ```python
     def __len__(self):
