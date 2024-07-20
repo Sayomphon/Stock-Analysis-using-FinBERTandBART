@@ -497,3 +497,5 @@ print(f"Precision: {eval_results_before['eval_precision']}")
 print(f"Recall: {eval_results_before['eval_recall']}")
 print(f"F1-score: {eval_results_before['eval_f1']}")
 ```
+#### Output print evaluation results before fine-tuning
+![Evaluation result before fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/45c8c189f3e60afa41326c1419455262c6af2b52/Evaluation%20result%20before%20fine-tuning.PNG)
