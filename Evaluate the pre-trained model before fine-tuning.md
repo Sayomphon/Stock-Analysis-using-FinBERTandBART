@@ -72,3 +72,5 @@ Executes the evaluation and stores the results in eval_results_before.
 eval_results_before = trainer_before.evaluate()
 ```
 eval_results_before: This variable stores the results of the evaluation. The evaluate method is called on the trainer_before object, triggering the evaluation process which uses the predefined training arguments and computes metrics via the metrics_calculator. 
+### Output print evaluation results before fine-tuning
+![Evaluation result before fine-tuning](https://github.com/Sayomphon/Stock-Analysis-using-FinBERTandBART/blob/45c8c189f3e60afa41326c1419455262c6af2b52/Evaluation%20result%20before%20fine-tuning.PNG)
