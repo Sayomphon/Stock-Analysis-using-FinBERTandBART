@@ -25,12 +25,14 @@ trainer_before = Trainer(
 eval_results_before = trainer_before.evaluate()
 ```
 ### Instantiate your MetricsCalculator
+Creates an instance to compute evaluation metrics.
 ```python
 # Instantiate your MetricsCalculator
 metrics_calculator = MetricsCalculator()
 ```
 metrics_calculator: This variable is an instance of the MetricsCalculator class, which is likely responsible for calculating various evaluation metrics. This calculator will be utilized later to assess the model's performance.
 ### Set Training Arguments
+Defines the configurations for evaluating the pre-trained model, including directories, batch size, and precision settings.
 ```python
 # Evaluate the pre-trained model before fine-tuning
 training_args = TrainingArguments(
@@ -48,6 +50,7 @@ training_args = TrainingArguments(
     - fp16: Enables mixed precision (16-bit floating-point) evaluation, which can speed up the evaluation process.
     - gradient_accumulation_steps: Specifies the number of steps to accumulate gradients before performing an update. However, this parameter is more relevant during training rather than evaluation.
 ### Create a Trainer Instance
+Sets up the Trainer with the model, evaluation dataset, tokenizer, and metric computation function.
 ```python
 trainer_before = Trainer(
     model=pretrained_model,
@@ -64,6 +67,7 @@ trainer_before = Trainer(
     - tokenizer: The tokenizer responsible for processing the input data before feeding it into the model.
     - compute_metrics: A method from the metrics_calculator instance that will be used to compute various evaluation metrics.
 ### Evaluate the Pre-trained Model
+Executes the evaluation and stores the results in eval_results_before.
 ```python
 eval_results_before = trainer_before.evaluate()
 ```
