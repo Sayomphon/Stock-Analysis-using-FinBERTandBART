@@ -1,4 +1,4 @@
-## Designe to evaluate a pre-trained model before any fine-tuning
+## Design to evaluate a pre-trained model before any fine-tuning
 ```python
 # Evaluate the pre-trained model before fine-tuning
 
