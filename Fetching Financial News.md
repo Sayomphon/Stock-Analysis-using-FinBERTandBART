@@ -21,17 +21,17 @@ Inside the function, it constructs a URL to make the API request:
 ```python
     news_url = f'https://newsapi.org/v2/everything?q={symbol}&apiKey={api_key}'
 ```
-    - news_url = ...: Constructs the URL for the News API using an f-string.
-    - https://newsapi.org/v2/everything: The base URL for the "everything" endpoint of the News API, which retrieves news articles based on a query.
-    - q={symbol}: Adds a query parameter to search for news articles related to the given stock symbol.
-    - apiKey={api_key}: Adds the API key to the URL to authenticate the request.
+  - news_url = ...: Constructs the URL for the News API using an f-string.
+  - https://newsapi.org/v2/everything: The base URL for the "everything" endpoint of the News API, which retrieves news articles based on a query.
+  - q={symbol}: Adds a query parameter to search for news articles related to the given stock symbol.
+  - apiKey={api_key}: Adds the API key to the URL to authenticate the request.
 ### Making the HTTP Request
 The function sends an HTTP GET request to the constructed URL to fetch the news data:
 ```python    
     response = requests.get(news_url)
 ```
-    - response = requests.get(news_url): Makes a GET request to the constructed news API URL using the requests library.
-    - news_url: The URL that was constructed to fetch the news articles.
+  - response = requests.get(news_url): Makes a GET request to the constructed news API URL using the requests library.
+  - news_url: The URL that was constructed to fetch the news articles.
 ### Returning the Response
 Finally, the function returns the response data in JSON format:
 ````python    
