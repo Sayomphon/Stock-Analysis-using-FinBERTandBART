@@ -43,6 +43,8 @@
   This function call loads the IMDB dataset, which is a popular dataset for sentiment analysis. The IMDB dataset contains movie reviews labeled as positive or negative.
 #### 16.) Split into training and validation sets
   This section of the code is used to split the loaded dataset into training and validation sets, specifically extracting the texts and their corresponding labels for each set.
+#### 17.) Tokenizer
+  The code initializes a tokenizer, which is responsible for converting text into a format that can be fed into a machine learning model.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -442,4 +444,10 @@ train_texts = dataset['train']['text']
 train_labels = dataset['train']['label']
 val_texts = dataset['test']['text']
 val_labels = dataset['test']['label']
+```
+#### 17.) Tokenizer
+The code initializes a pre-trained BERT tokenizer using the Hugging Face library, specifically the 'bert-base-uncased' configuration. The tokenizer is stored in the variable tokenizer, making it ready to preprocess text data by converting it into token IDs that can be fed into a BERT model for various natural language processing tasks.
+```python
+# Tokenizer
+tokenizer = AutoTokenizer.from_pretrained('bert-base-uncased')
 ```
