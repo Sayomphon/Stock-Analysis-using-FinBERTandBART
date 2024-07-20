@@ -139,13 +139,7 @@ def get_stock_data(api_key, symbol):
         raise ValueError(f"Data not available or API request failed. Response: {data}")
 ```
 #### 3.) Fetching Financial News
-Code is a function designed to fetch the latest financial news for a specified stock symbol using the News API.
-#### Function Workflow
-  - Input: The function takes symbol and api_key as input parameters.
-  - URL Construction: It constructs a URL using the provided stock symbol and api_key.
-  - API Request: The function makes an HTTP GET request to the constructed URL to fetch the news data.
-  - Response Handling: The server's response is converted into JSON format.
-  - Output: The function returns the JSON response containing the news articles.
+The get_latest_news function fetches the latest news articles related to a specified stock symbol using the News API. It constructs the API URL by combining the base URL for the "everything" endpoint with the provided stock symbol and API key as query parameters. It then uses the requests library to send a GET request to the constructed URL. Finally, it converts the response from the News API into JSON format and returns this JSON object, which contains the news articles and other related data. This function is useful for retrieving up-to-date financial news articles related to a specific stock symbol, enabling further analysis or display in a user interface.
 ```python
 # Function to fetch financial news
 def get_latest_news(symbol, api_key):
