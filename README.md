@@ -154,7 +154,15 @@ def get_latest_news(symbol, api_key):
     return response.json()
 ```
 #### 4.) Text Processing and Cleaning
-This function clean_text is used to clean up a given text by removing URLs, email addresses, and special characters. Here is a breakdown of what each line in the function does.
+The clean_text function is designed to preprocess and clean input text by removing unnecessary or unwanted elements such as URLs, email addresses, and special characters.
+  - Remove URLs
+    - It removes any URLs present in the text using a regular expression pattern that matches and replaces URLs with an empty string.
+  - Remove Emails
+    - It removes any email addresses by using a regular expression pattern that matches and replaces email-like substrings with an empty string.
+  - Remove Special Characters
+    - It removes special characters, keeping only letters, digits, and whitespace, using a regular expression pattern that matches characters other than letters, numbers, or whitespace.
+  - Strip Whitespace
+    - It trims leading and trailing whitespace from the text.
 ```python
 # Clean text function
 def clean_text(text):
