@@ -102,3 +102,12 @@ This part creates and displays a candlestick chart for the stock data using Plot
     - Shows the generated chart.
   - If any of the required inputs are missing:
     - Prints a message prompting the user to input all necessary details.
+### Button Creation and Event Binding
+```python
+button = widgets.Button(description="Analyze Stock")
+button.on_click(on_button_click)
+```
+  - Button Initialization:
+    - button = widgets.Button(description="Analyze Stock"): Creates a button widget with the label "Analyze Stock".
+  - Event Binding:
+    - button.on_click(on_button_click): Binds the on_button_click function to the button's click event. When the button is clicked, the function is executed.
