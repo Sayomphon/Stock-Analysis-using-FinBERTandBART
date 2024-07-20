@@ -47,6 +47,8 @@
   The code initializes a tokenizer, which is responsible for converting text into a format that can be fed into a machine learning model.
 #### 18.) Custom datasets
   This section of the code creates custom datasets for training and validation by wrapping text and label data along with tokenization logic.
+#### 19.) Load the Pre-Trained Model
+  This line of code loads a pre-trained model for sequence classification tasks, specifically the BERT model.
 #### 16.) Creating an Interactive UI
   The code uses ipywidgets to create a form where users can input their Alpha Vantage API Key, News API Key, and the stock symbol.
 #### A button is available for users to click to perform stock analysis and display the results.
@@ -458,4 +460,10 @@ The code creates custom datasets for training and validation by utilizing a cust
 ```python
 train_dataset = CustomDataset(train_texts, train_labels, tokenizer, max_length=128)
 val_dataset = CustomDataset(val_texts, val_labels, tokenizer, max_length=128)
+```
+#### 19.) Load the Pre-Trained Model
+The code initializes a pre-trained BERT model for sequence classification by loading it from the Hugging Face Transformers library. The model version specified is 'bert-base-uncased', which treats text as case-insensitive. The num_labels=2 parameter configures the model for binary classification, meaning it can categorize inputs into two different classes. The loaded model, stored in the pretrained_model variable, is now ready for fine-tuning or direct use in classification tasks.
+```python
+# Load the pre-trained model
+pretrained_model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=2)
 ```
